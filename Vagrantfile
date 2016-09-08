@@ -106,4 +106,17 @@ EOF"
 	config.vm.provision "shell", name: "adding docker group", inline: "groupadd docker ||true"
 	config.vm.provision "shell", name: "adding vagrant to docker group", inline: "usermod -aG docker vagrant"
 	
+	#liquid prompt installation
+  $liquidPrompt = <<SCRIPT
+mkdir -p /home/vagrant/tools/
+cd /home/vagrant/tools
+git clone https://github.com/nojhan/liquidprompt.git
+SCRIPT
+
+   config.vm.provision "shell", name: "liquidPrompt", privileged: false, inline: $liquidPrompt
+   
+   config.vm.provision "file", source: "Vagrantbashrc", destination: "/home/vagrant/.bashrc"
+
+   config.vm.provision "file", source: "Vagrantbash_aliases", destination: "/home/vagrant/.bash_aliases"
+	
 end
