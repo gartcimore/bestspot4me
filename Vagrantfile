@@ -82,4 +82,28 @@ Vagrant.configure(2) do |config|
     nvm alias default node
 
   SHELL
+  
+  config.vm.provision "shell", inline: <<-SCRIPT
+    print "Installing docker pre-requisites\n"
+    apt-get install -y apt-transport-https ca-certificates
+
+    print "Adding GPG key\n"
+    apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+  SCRIPT
+  
+  config.vm.provision "shell", name: "add docker repo", inline: "tee /etc/apt/sources.list.d/docker.list <<-'EOF'
+deb https://apt.dockerproject.org/repo ubuntu-trusty main
+EOF"
+
+	config.vm.provision "shell", name: "update repository", inline: "apt-get update"
+	
+	config.vm.provision "shell", name: "autoremove repository", inline: "apt-get autoremove -y"
+
+	config.vm.provision "shell", name: "installing extra images", inline: "apt-get install -y linux-image-extra-$(uname -r) linux-image-extra-virtual"
+	
+	config.vm.provision "shell", name: "installing docker engine", inline: "apt-get install -y docker-engine"
+	
+	config.vm.provision "shell", name: "adding docker group", inline: "groupadd docker ||true"
+	config.vm.provision "shell", name: "adding vagrant to docker group", inline: "usermod -aG docker vagrant"
+	
 end
