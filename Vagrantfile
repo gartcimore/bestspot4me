@@ -24,6 +24,7 @@ Vagrant.configure(2) do |config|
   # accessing "localhost:8080" will access port 80 on the guest machine.
   config.vm.network "forwarded_port", guest: 8881, host: 8881
   config.vm.network "forwarded_port", guest: 22, host: 2122, id: "ssh"
+  config.vm.network "forwarded_port", guest: 3000, host: 3000, id: "node"
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -48,8 +49,9 @@ Vagrant.configure(2) do |config|
     # Display the VirtualBox GUI when booting the machine
     # vb.gui = true
 
+    vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/vagrant", "1"]
     # Customize the amount of memory on the VM:
-    vb.memory = "1024"
+    vb.memory = "2048"
   end
   #
   # View the documentation for the provider you are using for more
@@ -70,7 +72,7 @@ Vagrant.configure(2) do |config|
     sudo apt-get update
 
     echo "Installing developer packages..."
-    sudo apt-get install build-essential curl vim -y > /dev/null
+    sudo apt-get install build-essential curl vim g++ -y > /dev/null
 
     echo "Installing Git..."
     sudo apt-get install git -y > /dev/null
@@ -80,7 +82,10 @@ Vagrant.configure(2) do |config|
     source ~/.nvm/nvm.sh
     nvm install node
     nvm alias default node
-
+    source ~/.nvm/nvm.sh
+    mkdir /home/vagrant/node_modules
+    cd /vagrant/webapp
+    ln -s /home/vagrant/node_modules/ node_modules
   SHELL
   
   config.vm.provision "shell", inline: <<-SCRIPT
@@ -96,13 +101,9 @@ deb https://apt.dockerproject.org/repo ubuntu-trusty main
 EOF"
 
 	config.vm.provision "shell", name: "update repository", inline: "apt-get update"
-	
 	config.vm.provision "shell", name: "autoremove repository", inline: "apt-get autoremove -y"
-
 	config.vm.provision "shell", name: "installing extra images", inline: "apt-get install -y linux-image-extra-$(uname -r) linux-image-extra-virtual"
-	
 	config.vm.provision "shell", name: "installing docker engine", inline: "apt-get install -y docker-engine"
-	
 	config.vm.provision "shell", name: "adding docker group", inline: "groupadd docker ||true"
 	config.vm.provision "shell", name: "adding vagrant to docker group", inline: "usermod -aG docker vagrant"
 	
