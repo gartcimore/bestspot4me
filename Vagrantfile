@@ -49,9 +49,9 @@ Vagrant.configure(2) do |config|
     # Display the VirtualBox GUI when booting the machine
     # vb.gui = true
 
-    vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/vagrant", "1"]
+    # vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/vagrant", "1"]
     # Customize the amount of memory on the VM:
-    vb.memory = "2048"
+    vb.memory = "4072"
   end
   #
   # View the documentation for the provider you are using for more
@@ -80,8 +80,8 @@ Vagrant.configure(2) do |config|
     echo "Installing Node and NVM..."
     curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
     source ~/.nvm/nvm.sh
-    nvm install node
-    nvm alias default node
+    nvm install v5.9.0
+    nvm use v5.9.0
     source ~/.nvm/nvm.sh
     mkdir /home/vagrant/node_modules
     cd /vagrant/webapp
@@ -115,9 +115,7 @@ git clone https://github.com/nojhan/liquidprompt.git
 SCRIPT
 
    config.vm.provision "shell", name: "liquidPrompt", privileged: false, inline: $liquidPrompt
-   
    config.vm.provision "file", source: "Vagrantbashrc", destination: "/home/vagrant/.bashrc"
-
    config.vm.provision "file", source: "Vagrantbash_aliases", destination: "/home/vagrant/.bash_aliases"
 	
 end

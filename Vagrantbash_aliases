@@ -11,8 +11,10 @@ alias dockercleani='printf "\n>>> Deleting untagged images\n\n" && docker rmi $(
 alias dockerclean='dockercleanc || true && dockercleani'
 
 #start mongodb
-alias start_db='docker run --name some-mongo -d mongo'
+alias start_db='docker run --name  some-mongo -p 27017:27017 -d mongo'
 
-
-#start mongodb
-alias start_app='cd /vagrant/webapp && npm install && npm start'
+#configure env
+alias configure=''
+alias bestSpot4me_home='cd /vagrant/webapp'
+alias bestSpot4me_build='cd /vagrant/webapp && npm install && npm run build'
+alias bestSpot4me_start='cd /vagrant/webapp && npm start'

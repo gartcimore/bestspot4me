@@ -10,6 +10,10 @@ fi
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
 
+export POSTMARK_API_TOKEN=4b466ec2-cf66-4b02-8b0d-2e96e4433708
+export FROM_EMAIL=no-reply@bestspot4me.com
+export JWT_SECRET=somesecretstring
+
 # User specific aliases and functions
 alias ll="ls -lhA"
 alias ps="ps auxf"
