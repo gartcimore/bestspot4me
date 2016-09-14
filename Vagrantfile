@@ -49,7 +49,7 @@ Vagrant.configure(2) do |config|
     # Display the VirtualBox GUI when booting the machine
     # vb.gui = true
 
-    # vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/vagrant", "1"]
+    vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/vagrant", "1"]
     # Customize the amount of memory on the VM:
     vb.memory = "4072"
   end

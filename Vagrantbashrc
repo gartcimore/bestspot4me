@@ -21,6 +21,8 @@ alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
 alias mkdir="mkdir -pv"
 alias wget="wget -c"
 
+source ~/.nvm/nvm.sh
+
 if [ -f $HOME/.bash_aliases ]
 then
       . $HOME/.bash_aliases
