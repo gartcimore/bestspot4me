@@ -4,12 +4,16 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongo_express         = require('mongo-express/lib/middleware');
 var mongoose = require('mongoose');
 var router = express.Router();
 var jwt    = require('jsonwebtoken'); 
 
 //routes
-var users   = require('./routes/users'); 
+var users   = require('./routes/users');
+
+// Mongo Express
+var mongo_express_config  = require('./mong_express_config');
 
 var app = express();
 
@@ -64,9 +68,7 @@ app.use(express.static(staticPath));
 app.use('/', express.static(staticPath));
 app.use('/new/*', express.static(staticPath));
 app.use('/validateEmail/*', express.static(staticPath));
-
-
-
+app.use('/mongo_express', mongo_express(mongo_express_config));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -99,8 +101,7 @@ app.use(function(err, req, res, next) {
   }
 });
 
-
-mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost:27017/bestSpot4Me');
+mongoose.connect('mongodb://'+mongo_express_config.mongodb.server+':'+mongo_express_config.mongodb.port+'/'+mongo_express_config.mongodb.auth[0].database);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
