@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var mongo_express         = require('mongo-express/lib/middleware');
+var mongo_express = require('mongo-express/lib/middleware');
 var mongoose = require('mongoose');
 var router = express.Router();
 var jwt    = require('jsonwebtoken'); 
@@ -20,6 +20,29 @@ var app = express();
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
+
+
+// Compiller
+var webpack              = require("webpack");
+var webpackDevMiddleware = require('webpack-dev-middleware');
+var webpackHotMiddleware = require('webpack-hot-middleware');
+
+var Wconfig   = require("./webpack.config");
+var compiler  = webpack(Wconfig);
+
+app.use(webpackDevMiddleware(compiler, {
+  compress: true,
+  hot: true,
+  inline: true,
+  stats: {
+    colors: true,
+    hash: true,
+    timings: true,
+    chunks: false
+  }
+}));
+
+app.use(webpackHotMiddleware(compiler));
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

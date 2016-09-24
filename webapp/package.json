@@ -3,23 +3,26 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
-    "build": "node node_modules/.bin/webpack",
-    "dev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js"
+    "start": "concurrently --kill-others 'node ./bin/www' "
   },
   "engines": {
     "node": "5.9.0",
     "npm": "3.7.3"
   },
   "devDependencies": {
+    "concurrently": "^2.0.0",
     "babel-core": "^6.2.1",
     "babel-loader": "^6.2.0",
+    "react-hot-loader": "^0.4.2",
     "babel-preset-es2015": "^6.1.18",
     "babel-preset-react": "^6.1.18",
+    "babel-preset-react-hmre": "^1.0.1",
     "webpack": "^1.12.9",
+    "webpack-dev-middleware": "^1.8.2",
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
+    "assets-webpack-plugin": "^3.2.0",
     "async": "^1.5.2",
     "axios": "^0.9.0",
     "babel-preset-stage-1": "^6.1.18",
@@ -34,9 +37,9 @@
     "jade": "~1.11.0",
     "jsonwebtoken": "^5.7.0",
     "lodash": "^3.10.1",
+    "mongo-express": "*",
     "mongoose": "^4.4.6",
     "mongoose-timestamp": "^0.5.0",
-    "mongo-express": "*",
     "morgan": "~1.6.1",
     "postmark": "^1.2.1",
     "react": "^0.14.3",
@@ -49,6 +52,6 @@
     "redux-promise": "^0.5.1",
     "sendgrid": "2.0.0",
     "serve-favicon": "~2.3.0",
-    "setprototypeof": "1.0.1"
+    "webpack-hot-middleware": "^2.12.2"
   }
 }
