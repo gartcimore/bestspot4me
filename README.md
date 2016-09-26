@@ -1,6 +1,7 @@
 # bestspot4me
 
-Start the Dev Env
+###Start the Dev Env
+
 - install vagrant and Virtual Box
 - $ vagrant plugin install ruby_dep --plugin-version 1.3.1
 - $ vagrant plugin install vagrant-fsnotify
