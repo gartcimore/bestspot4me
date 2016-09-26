@@ -13,11 +13,12 @@ Start the Dev Env
 
 - $vagrant fsnotify
 
+### Backend Serv
 
+> Backend Serv is running on http://localhost:8081/
+> REST API should be accessible on http://localhost:8081/api/
+> Mongo Express is accessible via http://localhost:8081/mongo_express/
 
-Backend Serv is running on http://localhost:8081/
-REST API should be accessible on http://localhost:8081/api/
-Mongo Express is accessible via http://localhost:8081/mongo_express/
-
-WebApp Serv is running on http://localhost:8080/
-HMR is enabled
+### WebApp Serv
+> WebApp Serv is running on http://localhost:8080/
+> HMR is enabled
