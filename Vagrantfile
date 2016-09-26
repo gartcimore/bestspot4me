@@ -24,7 +24,9 @@ Vagrant.configure(2) do |config|
   # accessing "localhost:8080" will access port 80 on the guest machine.
   config.vm.network "forwarded_port", guest: 8881, host: 8881
   config.vm.network "forwarded_port", guest: 22, host: 2122, id: "ssh"
-  config.vm.network "forwarded_port", guest: 3000, host: 3000, id: "node"
+  for i in 8080..8089
+    config.vm.network :forwarded_port, guest: i, host: i
+  end
 
 
   config.vm.synced_folder ".", "/vagrant", fsnotify: true
@@ -86,9 +88,11 @@ Vagrant.configure(2) do |config|
     nvm install v5.9.0
     nvm use v5.9.0
     source ~/.nvm/nvm.sh
-    mkdir /home/vagrant/node_modules
-    cd /vagrant/webapp
-    ln -s /home/vagrant/node_modules/ node_modules
+
+    mkdir /tmp/node_modules
+    cd /vagrant/BestSpot4Me/
+    ln -s /tmp/node_modules/ node_modules
+
   SHELL
   
   config.vm.provision "shell", inline: <<-SCRIPT

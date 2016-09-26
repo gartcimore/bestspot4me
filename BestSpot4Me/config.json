@@ -1,0 +1,26 @@
+{	
+	"server": {
+		"port": 8081,
+		"mongo": {
+			"db":       "bestSpot4Me",
+			"host":     "localhost",
+			"port":     27017,
+			"ssl":      false,
+			"url":      "mongodb://localhost:27017/bestSpot4Me"
+		},
+		"mongoExpress": {
+			"basicAuth": {
+				"username":"vagrant",
+				"password": "vagrant"
+			}
+		},
+		"jwtToken": "ILoveReactJS",
+		"postmark": {
+			"apiToken": "4b466ec2-cf66-4b02-8b0d-2e96e4433708",
+			"fromEmail": "no-reply@bestspot4me.com"
+		}
+	},
+	"webServer": {
+		"port": 8080
+	}
+}
