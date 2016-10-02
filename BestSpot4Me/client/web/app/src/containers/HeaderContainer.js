@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { logoutUser } from '../../../common/actions/users';
+import { logoutUser } from '_common/actions/users';
 import Header from '../components/header.js';
 
 

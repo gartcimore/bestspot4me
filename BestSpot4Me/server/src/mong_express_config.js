@@ -4,15 +4,14 @@ var mongo;
 var url  = require('url');
 var path = require('path');
 var fs   = require('fs');
-var config = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../config.json'), 'utf8'));
-config = config.server;
+
 mongo = {
-  db:       config.mongo.db,
-  host:     config.mongo.host,
-  //password: config.mongo.password,
-  port:     config.mongo.port,
-  ssl:      config.mongo.ssl,
-  url:      config.mongo.url,
+  db:       process.env.DB,
+  host:     process.env.DB_HOST ,
+  //password: process.env. password,
+  port:     process.env.DB_PORT,
+  ssl:      false,
+  url:      process.env.DB_URL,
   //username: 'bestSpot4Me',
 };
 
@@ -89,7 +88,10 @@ module.exports = {
   //this will be true unless ME_CONFIG_BASICAUTH_USERNAME is set and is the empty string
   useBasicAuth: process.env.ME_CONFIG_BASICAUTH_USERNAME !== '',
 
-  basicAuth: config.mongoExpress.basicAuth,
+  basicAuth: {
+    "username": process.env.DB_USERNAME,
+    "password": process.env.DB_PASSWORD
+  },
 
   options: {
     // Display startup text on console

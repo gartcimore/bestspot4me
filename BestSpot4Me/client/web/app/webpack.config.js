@@ -20,7 +20,10 @@ var config = {
     'webpack-hot-middleware/client'
   ],
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx'],
+    alias:{
+      _common: path.resolve( __dirname, '../common/' )
+    }
    // root: [ path.join(__dirname, 'app') ]
   },
   output: {

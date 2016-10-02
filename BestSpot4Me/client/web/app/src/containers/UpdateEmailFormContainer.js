@@ -1,7 +1,7 @@
 import UpdateEmailForm from '../components/UpdateEmailForm.js';
-import {updateEmail, updateEmailSuccess, updateEmailFailure, resetUpdateEmailState } from '../../../common/actions/updateEmail';
-import { validateUserFields, validateUserFieldsSuccess, validateUserFieldsFailure, resetValidateUserFields } from '../../../common/actions/validateUserFields';
-import { updateUserEmail } from '../../../common/actions/users';
+import {updateEmail, updateEmailSuccess, updateEmailFailure, resetUpdateEmailState } from '_common/actions/updateEmail';
+import { validateUserFields, validateUserFieldsSuccess, validateUserFieldsFailure, resetValidateUserFields } from '../../../../common/actions/validateUserFields';
+import { updateUserEmail } from '../../../../common/actions/users';
 
 import { reduxForm } from 'redux-form';
 

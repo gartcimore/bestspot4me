@@ -1,6 +1,6 @@
 import SignUpForm from '../components/SignUpForm.js';
-import {signUpUser, signUpUserSuccess, signUpUserFailure, resetUser } from '../../../common/actions/users';
-import { validateUserFields, validateUserFieldsSuccess, validateUserFieldsFailure, resetValidateUserFields } from '../../../common/actions/validateUserFields';
+import {signUpUser, signUpUserSuccess, signUpUserFailure, resetUser } from '_common/actions/users';
+import { validateUserFields, validateUserFieldsSuccess, validateUserFieldsFailure, resetValidateUserFields } from '../../../../common/actions/validateUserFields';
 
 import { reduxForm } from 'redux-form';
 

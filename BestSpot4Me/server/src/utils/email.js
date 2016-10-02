@@ -1,8 +1,14 @@
-var postmark = require("postmark")(process.env.POSTMARK_API_TOKEN);
+
+var fs = require('fs');
+var path = require('path');
+
+var postmark = require("postmark")(process.env.POSTMARK_TOKEN);
 var async = require('async');
 var crypto = require('crypto');
 
-if (!process.env.FROM_EMAIL) {
+
+
+if (!process.env.POSTMARK_FROM) {
   console.log('Please set: FROM_EMAIL environment variable. This is a validated email address to send emails from to other users for email verification, reset pwd etc')
   process.exit();
 }
@@ -27,7 +33,7 @@ function sendWelcomeEmail(user, host, finalCB) {
       },
       function(user, done) {
         postmark.sendEmailWithTemplate({
-          "From": process.env.FROM_EMAIL,
+          "From": process.env.POSTMARK_FROM,
           "To": user.email,
           "TemplateId": 924542,
           "TemplateModel": {

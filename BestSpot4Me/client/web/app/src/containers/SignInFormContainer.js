@@ -1,5 +1,5 @@
 import SignInForm from '../components/SignInForm.js';
-import {signInUser, signInUserSuccess, signInUserFailure, resetUserFields } from '../../../common/actions/users';
+import {signInUser, signInUserSuccess, signInUserFailure, resetUserFields } from '_common/actions/users';
 import { reduxForm } from 'redux-form';
 
 

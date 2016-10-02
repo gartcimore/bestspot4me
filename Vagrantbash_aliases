@@ -16,5 +16,4 @@ alias start_db='docker run --name  some-mongo -p 27017:27017 -d mongo'
 #configure env
 alias configure=''
 alias bestSpot4me_home='cd /vagrant/BestSpot4Me'
-alias bestSpot4me_build='cd /vagrant/BestSpot4Me && npm install'
-alias bestSpot4me_start='cd /vagrant/BestSpot4Me && npm start'
+alias bestSpot4me_start='cd /vagrant/BestSpot4Me && docker-compose up -d'

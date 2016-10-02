@@ -12,10 +12,6 @@ var fs              = require('fs');
 var users           = require('./routes/users');
 
 
-// Config 
-var config = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../config.json'), 'utf8'));
-config = config.server;
-
 // Mongo Express
 var mongo_express         = require('mongo-express/lib/middleware');
 var mongoose              = require('mongoose');
@@ -48,7 +44,7 @@ app.use(function(req, res, next) {
 
   // decode token
   if (token) {
-    jwt.verify(token, config.jwtToken, function(err, user) {      
+    jwt.verify(token, process.env.JWT_TOKEN, function(err, user) {      
       if (err) {
         return res.status(401).json({ success: false, message: 'Failed to authenticate token.' });    
       } else {
@@ -95,7 +91,7 @@ app.use(function(err, req, res, next) {
   }
 });
 
-mongoose.connect('mongodb://'+config.mongo.host+':'+config.mongo.port+'/'+config.mongo.db);
+mongoose.connect('mongodb://'+process.env.DB_URL);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {

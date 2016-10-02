@@ -7,8 +7,10 @@ var jwt         = require('jsonwebtoken');
 var utils       = require('../utils/index');
 var email       = require('../utils/email');
 var expressJwt  = require('express-jwt');
+var fs          = require('fs');
+var path        = require('path');
 
-if (!process.env.JWT_SECRET) {
+if (!process.env.JWT_TOKEN) {
   console.error('ERROR!: Please set JWT_SECRET before running the app. \n run: export JWT_SECRET=<some secret string> to set JWTSecret. ')
   process.exit();
 }
@@ -207,7 +209,7 @@ router.get('/me/from/token', function(req, res, next) {
   }
 
   // decode token
-  jwt.verify(token, process.env.JWT_SECRET, function(err, user) {
+  jwt.verify(token, process.env.JWT_TOKEN, function(err, user) {
     if (err) throw err;
 
     //return user using the id from w/in JWTToken
@@ -231,7 +233,7 @@ router.get('/me/from/token', function(req, res, next) {
 });
 
 router.get('/resendValidationEmail', expressJwt({
-  secret: process.env.JWT_SECRET
+  secret: process.env.JWT_TOKEN
 }), function(req, res, next) {
 
   User.findById({
@@ -256,7 +258,7 @@ router.get('/resendValidationEmail', expressJwt({
 router.post(
   '/updateEmail',
   expressJwt({
-    secret: process.env.JWT_SECRET
+    secret: process.env.JWT_TOKEN
   }),
   function(req, res, next) {
 

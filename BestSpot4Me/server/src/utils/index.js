@@ -1,4 +1,11 @@
 var jwt = require('jsonwebtoken');
+var fs = require('fs');
+var path = require('path');
+
+if (!process.env.JWT_TOKEN) {
+  console.log('Please set: JWT Token environment variable.')
+  process.exit();
+}
 
 function generateToken(user) {
   //Dont use password and other sensitive fields
@@ -11,7 +18,7 @@ function generateToken(user) {
     image: user.image
   };
 
-  return token = jwt.sign(u, process.env.JWT_SECRET, {
+  return token = jwt.sign(u, process.env.JWT_TOKEN, {
     expiresIn: 60 * 60 * 24 // expires in 24 hours
   });
 }

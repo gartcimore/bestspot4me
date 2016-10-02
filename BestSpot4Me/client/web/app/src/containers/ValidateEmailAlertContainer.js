@@ -1,7 +1,7 @@
 import ValidateEmailAlert from '../components/ValidateEmailAlert.js';
 import { connect } from 'react-redux'
-import { validateEmail, validateEmailSuccess, validateEmailFailure } from '../../../common/actions/users';
-import { resendValidationEmail, resendValidationEmailSuccess, resendValidationEmailFailure, resetResendEmail, resetResendEmailState } from '../../../common/actions/resendEmail';
+import { validateEmail, validateEmailSuccess, validateEmailFailure } from '_common/actions/users';
+import { resendValidationEmail, resendValidationEmailSuccess, resendValidationEmailFailure, resetResendEmail, resetResendEmailState } from '../../../../common/actions/resendEmail';
 import { reduxForm } from 'redux-form';
 
 

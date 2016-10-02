@@ -23,6 +23,7 @@ Vagrant.configure(2) do |config|
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   config.vm.network "forwarded_port", guest: 8881, host: 8881
+  config.vm.network "forwarded_port", guest: 80, host: 80
   config.vm.network "forwarded_port", guest: 22, host: 2122, id: "ssh"
   for i in 8080..8089
     config.vm.network :forwarded_port, guest: i, host: i
@@ -54,7 +55,7 @@ Vagrant.configure(2) do |config|
     # Display the VirtualBox GUI when booting the machine
     # vb.gui = true
 
-    vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/vagrant", "1"]
+    # vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/vagrant", "1"]
     # Customize the amount of memory on the VM:
     vb.memory = "4072"
   end
@@ -79,19 +80,11 @@ Vagrant.configure(2) do |config|
     echo "Installing developer packages..."
     sudo apt-get install build-essential curl vim g++ -y > /dev/null
 
+    sudo curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
+
     echo "Installing Git..."
     sudo apt-get install git -y > /dev/null
-
-    echo "Installing Node and NVM..."
-    curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
-    source ~/.nvm/nvm.sh
-    nvm install v5.9.0
-    nvm use v5.9.0
-    source ~/.nvm/nvm.sh
-
-    mkdir /tmp/node_modules
-    cd /vagrant/BestSpot4Me/
-    ln -s /tmp/node_modules/ node_modules
 
   SHELL
   

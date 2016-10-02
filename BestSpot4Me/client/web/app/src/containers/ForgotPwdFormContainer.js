@@ -1,5 +1,5 @@
 import ForgotPwdForm from '../components/ForgotPwdForm.js';
-import {forgotPwd, forgotPwdSuccess, forgotPwdFailure, resetUserFields } from '../../../common/actions/users';
+import {forgotPwd, forgotPwdSuccess, forgotPwdFailure, resetUserFields } from '_common/actions/users';
 import { reduxForm } from 'redux-form';
 
 
