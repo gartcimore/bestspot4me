@@ -8,11 +8,15 @@
 - run vagrant up --provision
 
 - connect via ssh to 127.0.0.1:2122 vagrant/vagrant
-- $ start_db
-- $ bestSpot4me_build
+- $ su
+- $ vagrant/vagrant
+- $ curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+- $ chmod +x /usr/local/bin/docker-compose
+- $ exit
 - $ bestSpot4me_start
 
-- $vagrant fsnotify
+- in the windows prompt
+- $ vagrant fsnotify
 
 ### Backend Serv
 
