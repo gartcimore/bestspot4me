@@ -10,9 +10,9 @@
 version: '2'
 services:
   dbdata:
-    image: tianon/true
+    image: mongo
     volumes:
-      - "/data/db"
+      - "/data/db:/data/db"
   db:
     image: mongo
     ports:
@@ -20,6 +20,8 @@ services:
     volumes_from:
       - dbdata
     command: "--smallfiles --logpath=/dev/null"
+    links:
+      - dbdata
   rest-api:
     build: ./server/
     container_name: apiServer
@@ -49,6 +51,6 @@ services:
     ports:
       - "80:80"
     links:
-      - db
+      - rest-api
     environment:
       - PORT=80

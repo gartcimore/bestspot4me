@@ -14,6 +14,7 @@ Vagrant.configure(2) do |config|
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "ubuntu/trusty64"
 
+
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
@@ -22,10 +23,10 @@ Vagrant.configure(2) do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  config.vm.network "forwarded_port", guest: 8881, host: 8881
+
   config.vm.network "forwarded_port", guest: 80, host: 8080
   config.vm.network "forwarded_port", guest: 22, host: 2122, id: "ssh"
-  config.vm.network "forwarded_port", guest: 4040, host: 4040, id: "ssh"
+  config.vm.network "forwarded_port", guest: 4040, host: 4040
   for i in 8081..8089
     config.vm.network :forwarded_port, guest: i, host: i
   end
@@ -54,7 +55,7 @@ Vagrant.configure(2) do |config|
   #
   config.vm.provider "virtualbox" do |vb|
     # Display the VirtualBox GUI when booting the machine
-    # vb.gui = true
+    #vb.gui = true
 
     # vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/vagrant", "1"]
     # Customize the amount of memory on the VM:
@@ -81,8 +82,12 @@ Vagrant.configure(2) do |config|
     echo "Installing developer packages..."
     sudo apt-get install build-essential curl vim g++ -y > /dev/null
 
+    echo "Installing Docker Compose"
     sudo curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
     sudo chmod +x /usr/local/bin/docker-compose
+
+    sudo curl -L git.io/scope -o /usr/local/bin/scope
+    sudo chmod a+x /usr/local/bin/scope
 
     echo "Installing Git..."
     sudo apt-get install git -y > /dev/null
