@@ -41,7 +41,7 @@ services:
     links:
       - db
   webapp:
-    build: ./app/web/
+    build: ./client/web/
     container_name: webapp
     volumes:
       - ./client/web/app:/app
