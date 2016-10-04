@@ -81,7 +81,9 @@ Thanks to a windows cmd line, on the native application folder (BestSpot4Me/clie
 
 App is available on the virtual device after a build (the first build is a bit long).
 
-HMR is available, when a modification is saved on SublimeText, the application is automatcally updated.
+HMR must be available, when a modification is saved on SublimeText, the application is automatcally updated.
+
+if HMR is not available, press F1 on Genymotion virtual device and "enable hot reloading".
 
 
 
