@@ -1,4 +1,4 @@
-package com.bestspot4menative;
+package com.app;
 
 import android.app.Application;
 import android.util.Log;

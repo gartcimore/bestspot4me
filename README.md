@@ -77,7 +77,8 @@ After installation and after Android SDK configuration, you just have to create 
 
 Start the virtual device on Genymotion.
 
-Thanks to a windows cmd line, on the native application folder (BestSpot4Me/client/native), do _npm install_ and _react-native run-android_. 
+Thanks to a windows cmd line, on the native application folder (BestSpot4Me/client/native), do:
+` $ npm install ` after that `mklink /D node_modules\common ..\..\common` to fix react-native issue with npm link (for windows users), and finally `react-native run-android`. 
 
 App is available on the virtual device after a build (the first build is a bit long).
 
