@@ -13,8 +13,8 @@ class Header extends Component {
 
   componentWillReceiveProps(nextProps) {
     if(this.props.user.user && !nextProps.user.user) {//logout (had user(this.props.user.user) but no loger the case (!nextProps.user.user))
-      this.context.router.push('/');
-    }
+      //this.context.router.push('/');
+    } 
   }
 
   renderSignInLinks(authenticatedUser) {
@@ -24,6 +24,11 @@ class Header extends Component {
             <li style={{paddingRight: '10px'}} role="presentation">      
               <Link role="presentation" style={{color:'#996633',  fontSize: '17px'}} to="/profile">
               {authenticatedUser.name}
+              </Link>
+            </li>
+            <li style={{paddingRight: '10px'}} role="presentation">      
+              <Link style={{color:'#996633',  fontSize: '17px'}} to="/map">
+              Carte
               </Link>
             </li>
             <li style={{paddingRight: '10px'}} role="presentation">      

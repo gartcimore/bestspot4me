@@ -9,6 +9,18 @@
 
 version: '2'
 services:
+  probe:
+    image: weaveworks/scope:0.17.1
+    network_mode: "host"
+    pid: "host"
+    privileged: true
+    labels:
+      - "works.weave.role=system"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:rw"
+    command:
+      - "--probe.docker"
+      - "true"
   dbdata:
     image: mongo
     volumes:
@@ -28,9 +40,9 @@ services:
     volumes:
       - ./server/src:/src
     ports:
-      - "8081:8081"
+      - "8082:8082"
     environment:
-      - PORT=8081
+      - PORT=8082
       - DB=bestSpot4Me
       - DB_HOST=db
       - DB_PORT=27017
@@ -47,6 +59,7 @@ services:
     container_name: webapp
     volumes:
       - ./client/web/app:/app
+      - ./client/web/package.json:/package.json
       - ./client/common:/common
     ports:
       - "80:80"

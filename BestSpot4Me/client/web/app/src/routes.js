@@ -7,10 +7,12 @@ import SignUp from './pages/SignUp';
 import ForgotPwd from './pages/ForgotPwd';
 import ValidateEmail from './pages/ValidateEmail';
 import Profile from './pages/Profile';
+import Map from './pages/Map';
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={Profile} />
+    <IndexRoute component={SignIn} />
+    <Route path="/map" component={Map} />
     <Route path="/signin" component={SignIn} />
     <Route path="/signup" component={SignUp} />
     <Route path="/forgotPwd" component={ForgotPwd} />

@@ -27,7 +27,7 @@ Vagrant.configure(2) do |config|
   config.vm.network "forwarded_port", guest: 80, host: 8080
   config.vm.network "forwarded_port", guest: 22, host: 2122, id: "ssh"
   config.vm.network "forwarded_port", guest: 4040, host: 4040
-  for i in 8081..8089
+  for i in 8082..8089
     config.vm.network :forwarded_port, guest: i, host: i
   end
 
@@ -82,13 +82,6 @@ Vagrant.configure(2) do |config|
     echo "Installing developer packages..."
     sudo apt-get install build-essential curl vim g++ -y > /dev/null
 
-    echo "Installing Docker Compose"
-    sudo curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-    sudo chmod +x /usr/local/bin/docker-compose
-
-    sudo curl -L git.io/scope -o /usr/local/bin/scope
-    sudo chmod a+x /usr/local/bin/scope
-
     echo "Installing Git..."
     sudo apt-get install git -y > /dev/null
 
@@ -112,6 +105,7 @@ EOF"
 	config.vm.provision "shell", name: "installing docker engine", inline: "apt-get install -y docker-engine"
 	config.vm.provision "shell", name: "adding docker group", inline: "groupadd docker ||true"
 	config.vm.provision "shell", name: "adding vagrant to docker group", inline: "usermod -aG docker vagrant"
+  config.vm.provision "shell", name: "installing docker compose", inline: "curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose"
 	
 	#liquid prompt installation
   $liquidPrompt = <<SCRIPT

@@ -63,3 +63,11 @@ $RECYCLE.BIN/
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# node modules Files #
+node_modules
+
+# native build files #
+native/android/app/build
+BestSpot4Me/client/native/android/app/build/
+.vagrant/

@@ -12,7 +12,7 @@ class SignUpForm extends Component {
 
   componentWillReceiveProps(nextProps) {
     if(nextProps.user.status === 'authenticated' && nextProps.user.user && !nextProps.user.error) {
-      this.context.router.push('/');
+      this.context.router.push('/map');
     }
   }
 

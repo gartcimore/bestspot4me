@@ -10,9 +10,6 @@ alias dockercleani='printf "\n>>> Deleting untagged images\n\n" && docker rmi $(
 # Delete all stopped containers and untagged images.
 alias dockerclean='dockercleanc || true && dockercleani'
 
-#start mongodb
-alias start_db='docker run --name  some-mongo -p 27017:27017 -d mongo'
-
 #configure env
 alias configure=''
 alias bestSpot4me_home='cd /vagrant/BestSpot4Me'

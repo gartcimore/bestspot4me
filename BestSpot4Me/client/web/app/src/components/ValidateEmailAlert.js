@@ -16,7 +16,7 @@ class ValidateEmailAlert extends Component {
   componentWillReceiveProps(nextProps) {
     //if user is authenticated, then reroute the user to PostsList as authenticated user
     if(nextProps.user && nextProps.user.status === 'authenticated' && nextProps.user.user && !nextProps.user.error) {
-      this.context.router.push('/');
+      this.context.router.push('/map');
     }
   }
 
