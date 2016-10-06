@@ -25,15 +25,14 @@ services:
     image: mongo
     volumes:
       - "/data/db:/data/db"
+    command: --break-mongo
   db:
     image: mongo
     ports:
       - "27017:27017"
     volumes_from:
       - dbdata
-    command: "--smallfiles --logpath=/dev/null"
-    links:
-      - dbdata
+    command: --smallfiles --rest
   rest-api:
     build: ./server/
     container_name: apiServer
