@@ -38,24 +38,24 @@ server.on('listening', onListening);
 ///////////////////
 // Realtime Communication
 ///////////////////
-var WebSocketServer = require('ws').Server,
-    wss = new WebSocketServer({ 
-    server: server
+// var WebSocketServer = require('ws').Server,
+//     wss = new WebSocketServer({ 
+//     server: server
 
 
-});
+// });
 
-wss.on('connection', function connection(ws) {
-  var location = url.parse(ws.upgradeReq.url, true);
-  // you might use location.query.access_token to authenticate or share sessions 
-  // or ws.upgradeReq.headers.cookie (see http://stackoverflow.com/a/16395220/151312) 
+// wss.on('connection', function connection(ws) {
+//   var location = url.parse(ws.upgradeReq.url, true);
+//   // you might use location.query.access_token to authenticate or share sessions 
+//   // or ws.upgradeReq.headers.cookie (see http://stackoverflow.com/a/16395220/151312) 
  
-  ws.on('message', function incoming(message) {
-    console.log('received: %s', message);
-  });
+//   ws.on('message', function incoming(message) {
+//     console.log('received: %s', message);
+//   });
  
-  ws.send('something');
-});
+//   ws.send('something');
+// });
 
 ///////////////////
 //
