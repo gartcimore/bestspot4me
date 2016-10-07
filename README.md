@@ -22,11 +22,17 @@
 
 ### Backend Server
 
-Backend Server is running on http://localhost:8081/
+Backend Server is running on http://localhost:8082/
 
-REST API is accessible on http://localhost:8081/api/
+REST API is accessible on http://localhost:8082/api/
 
-Mongo Express is accessible via http://localhost:8081/mongo_express/
+Mongo Express is accessible via http://localhost:8082/mongo_express/
+
+WebSocket Server is accessible on port 8085
+
+Mongo DB is running on port 27017
+
+To have a look on all the containers go to http://localhost:4040
 
 ### WebApp Server
 WebApp Server is running on http://localhost:8080/
