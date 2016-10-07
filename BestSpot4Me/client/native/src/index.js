@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
 import * as reducers from 'common/reducers';
-import AppContainer from './containers/AppContainers';
+import MainView from './views/MainView';
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const reducer = combineReducers(reducers);
@@ -16,7 +16,7 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <AppContainer />
+        <MainView/>
       </Provider>
     );
   }
