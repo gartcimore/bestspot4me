@@ -38,4 +38,4 @@ RUN npm install
 WORKDIR .
 
 EXPOSE 8081:8081
-CMD ["npm", "start"]
+CMD npm install && npm start

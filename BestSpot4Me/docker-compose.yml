@@ -33,6 +33,25 @@ services:
     volumes_from:
       - dbdata
     command: --smallfiles --rest
+  websocket-server:
+    build: ./websocket-server/
+    container_name: websocketServer
+    volumes:
+      - ./websocket-server/src:/src
+      - ./websocket-server/package.json:/package.json
+    ports:
+      - "8085:8085"
+    environment:
+      - PORT=8085
+      - DB=bestSpot4Me
+      - DB_HOST=db
+      - DB_PORT=27017
+      - DB_URL=mongodb://db:27017/bestSpot4Me
+      - DB_USERNAME=admin
+      - DB_PASSWORD=admin
+      - JWT_TOKEN=ILoveReactJS
+    links:
+      - db
   rest-api:
     build: ./server/
     container_name: apiServer

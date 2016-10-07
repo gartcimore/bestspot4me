@@ -9,6 +9,7 @@ var email       = require('../utils/email');
 var expressJwt  = require('express-jwt');
 var fs          = require('fs');
 var path        = require('path');
+var Cookies     = require( "cookies" );
 
 if (!process.env.JWT_TOKEN) {
   console.error('ERROR!: Please set JWT_SECRET before running the app. \n run: export JWT_SECRET=<some secret string> to set JWTSecret. ')
@@ -130,6 +131,9 @@ router.post('/users/signin', function(req, res) {
 
         user = utils.getCleanUser(user);
 
+        new Cookies(req,res).set('access_token',token,{
+            httpOnly: true
+        });
         res.json({
           user: user,
           token: token

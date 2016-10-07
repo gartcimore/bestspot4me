@@ -34,5 +34,5 @@ ADD package.json .
 RUN npm install
 WORKDIR .
 
-EXPOSE 80:80
+EXPOSE 8085:8085
 CMD npm install && npm start
