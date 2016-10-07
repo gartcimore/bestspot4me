@@ -1,20 +1,26 @@
 'use strict'
 
+/*
+
+Clean Floating Button test
+
+*/
+
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  Text,
-  View
+  View,
+  Animated
 } from 'react-native';
+import FloatingButton from './FloatingButton';
 
 export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome To BestSpot4Me</Text>
         {this.props.children}
+         <FloatingButton buttonColor="rgba(231,76,60,1)"/>
       </View>
-
     );
   }
 }

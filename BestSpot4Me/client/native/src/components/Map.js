@@ -50,6 +50,7 @@ class Map extends Component {
           initialCenterCoordinate={this.props.center}
           initialZoomLevel={this.props.zoom}
           initialDirection={0}
+          attributionButtonIsHidden={true}
           rotateEnabled={true}
           scrollEnabled={true}
           zoomEnabled={true}
