@@ -1,6 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
+import io from 'socket.io-client';
+
+
+const socket = io('http://localhost:8085'); 
+socket.on('connect', function (msg) {
+  console.log("connected");
+  socket.emit('authenticate', {token: sessionStorage.getItem("jwtToken")}); // send the jwt
+});
 
 class MapComponent extends Component {
   static contextTypes = {
@@ -13,6 +21,8 @@ class MapComponent extends Component {
      if(!userStatus || userStatus !== 'authenticated') {
       this.context.router.push('/');
     }
+
+    
   }
 
   componentWillReceiveProps(nextProps) {

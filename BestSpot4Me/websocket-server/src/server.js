@@ -1,77 +1,45 @@
-var debug       = require('debug')('websocket-server:server');
-var http        = require('http');
-var jwt         = require('jsonwebtoken');
-var mongoose    = require('mongoose');
-var url         = require('url');
+var express       = require('express');
+var app           = express();
+var server        = require('http').Server(app);
+var io            = require('socket.io')(server);
+var socketioJwt   = require('socketio-jwt');
+var mongoose      = require('mongoose');
 
-/**
- * Get port from environment and store in Express.
- */
-
-
-
-/**
- * Create HTTP server.
- */
-
-var server = http.createServer(function(request, response) {});
-///////////////////
-// Realtime Communication
-///////////////////
-var WebSocketServer = require('ws').Server,
-    wss = new WebSocketServer({ 
-    server: server,
-    verifyClient: function (info, cb) {
-        var question = url.parse(info.req.url, true, true);
-        var token = question.query.token;
-        console.log("Token received: " + token);
-        try {
-          console.log("info.req.headers : "+ JSON.stringify(info.req.headers));
-        } catch (e) {
-          console.log("error " + e);
-        }
-        if (!token)
-            cb(false, 401, 'Unauthorized')
-        else {
-          console.log(token);
-            jwt.verify(token, process.env.JWT_TOKEN, function (err, decoded) {
-                if (err) {
-                    cb(false, 401, 'Unauthorized')
-                } else {
-                    info.req.user = decoded //[1]
-                    cb(true)
-                }
-            })
-        }
-    }
-});
-
-
-wss.on('connection', function connection(ws) {
-  var user = ws.upgradeReq.user;
-  ws.send('Welcome! ' + user.name);
-  console.log("User Connected: " + user.name);
-  ws.on('message', function incoming(message) {
-    console.log('received: %s', message);
-  });
- 
-  ws.send('something');
-});
-
-///////////////////
-//
-///////////////////
+var env = {
+  
+};
 
 try {
   mongoose.connect('mongodb://'+process.env.DB_URL);
   var db = mongoose.connection;
   db.on('error', console.error.bind(console, 'connection error:'));
   db.once('open', function() {
-    debug('DB connected!');
+    console.log('DB connected!');
   });
 } catch (e) {
   console.error('connection DB Failed');
 }
+
+app.set('views', __dirname + '/views');
+app.set('view engine', 'pug');
+
+io.on('connection', socketioJwt.authorize({
+  secret: process.env.JWT_TOKEN,
+  timeout: 15000 // 15 seconds to send the authentication message
+}))
+.on('authenticated', function(socket){
+  console.log('connected & authenticated: ' + JSON.stringify(socket.decoded_token));
+  socket.on('chat message', function(msg){
+    io.emit('chat message', msg);
+  });
+});
+
+app.use(express.static(__dirname + '/public'));
+
+app.get('/', function (req, res) {
+  res.render('index', { env: env });
+});
+
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -137,5 +105,5 @@ function onListening() {
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+  console.log('Listening on ' + bind);
 }

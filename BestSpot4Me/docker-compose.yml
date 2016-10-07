@@ -53,10 +53,11 @@ services:
     links:
       - db
   rest-api:
-    build: ./server/
+    build: ./api-server/
     container_name: apiServer
     volumes:
-      - ./server/src:/src
+      - ./api-server/src:/src
+      - ./api-server/package.json:/package.json
     ports:
       - "8082:8082"
     environment:
