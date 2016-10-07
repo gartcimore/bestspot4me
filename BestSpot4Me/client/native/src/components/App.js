@@ -19,7 +19,6 @@ export default class App extends Component {
     return (
       <View style={styles.container}>
         {this.props.children}
-         <FloatingButton buttonColor="rgba(231,76,60,1)"/>
       </View>
     );
   }

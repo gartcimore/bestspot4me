@@ -42,13 +42,6 @@ export default class FloatingButton extends Component {
     return { alignItems: alignItemsMap[this.props.position] };
   }
 
-  getButtonSize() {
-    return {
-      width: this.props.size,
-      height: this.props.size + shadowHeight,
-    }
-  }
-
   getOffsetXY() {
     return {
       paddingHorizontal: this.props.offsetX,
@@ -137,8 +130,7 @@ export default class FloatingButton extends Component {
         })
       }]}>
         +
-      </Animated.Text>
-    )
+      </Animated.Text>);
 }
 
   _renderTappableBackground() {
@@ -152,24 +144,9 @@ export default class FloatingButton extends Component {
   }
 } 
 
-FloatingButton.defaultProps = {
-  active: false,
-  bgColor: 'transparent',
-  buttonColor: 'rgba(0,0,0,1)',
-  buttonTextColor: 'rgba(255,255,255,1)',
-  spacing: 20,
-  outRangeScale: 1,
-  autoInactive: true,
-  onPress: () => {},
-  backdrop: false,
-  degrees: 135,
-  position: 'right',
-  offsetX: 30,
-  offsetY: 30,
-  size: 56,
-  verticalOrientation: 'up',
-};
-
+/**
+StyleSheet
+**/
 const styles = StyleSheet.create({
   overlay: {
     position: 'absolute',
@@ -194,3 +171,45 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   }
 });
+
+/**
+Prop Validation
+**/
+FloatingButton.propTypes = {
+  active: PropTypes.bool,
+  bgColor: PropTypes.string,
+  buttonColor: PropTypes.string,
+  buttonTextColor: PropTypes.string,
+  spacing: PropTypes.number,
+  outRangeScale : PropTypes.number,
+  autoInactive: PropTypes.bool,
+  onPress: PropTypes.func,
+  backdrop: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.object
+  ]),
+  degrees: PropTypes.number,
+  position: PropTypes.string,
+  offsetX: PropTypes.number,
+  offsetY: PropTypes.number,
+  size: PropTypes.number,
+  verticalOrientation: PropTypes.oneOf(['up', 'down']),
+};
+
+FloatingButton.defaultProps = {
+  active: false,
+  bgColor: 'transparent',
+  buttonColor: 'rgba(231,76,60,1)',
+  buttonTextColor: 'rgba(255,255,255,1)',
+  spacing: 20,
+  outRangeScale: 1,
+  autoInactive: true,
+  onPress: () => {},
+  backdrop: false,
+  degrees: 135,
+  position: 'right',
+  offsetX: 30,
+  offsetY: 30,
+  size: 56,
+  verticalOrientation: 'up',
+};
