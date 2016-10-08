@@ -21,9 +21,26 @@ alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
 alias mkdir="mkdir -pv"
 alias wget="wget -c"
 
-source ~/.nvm/nvm.sh
+export PROJECT_ROOT=/vagrant/BestSpot4Me
 
 if [ -f $HOME/.bash_aliases ]
 then
       . $HOME/.bash_aliases
 fi
+
+project() {
+	cd $PROJECT_ROOT
+}
+
+up() {
+	project && docker-compose up -d && cd -
+}
+
+restart_api() {
+	project && docker-compose restart rest-api && cd -
+}
+
+logs_api() {
+	project && docker-compose logs -f rest-api
+}
+
