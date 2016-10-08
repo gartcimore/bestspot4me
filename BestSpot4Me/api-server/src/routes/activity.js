@@ -25,7 +25,6 @@ router.get('/activity/', function(req, res) {
 
   Activity
     .find({})
-    .select({})
     .limit(100)
     .exec(function(err, activities) {
       if (err) {
@@ -46,7 +45,6 @@ router.get('/activity/:id', function(req, res) {
       _id:req.params.id
 
     })
-    .select({})
     .limit(100)
     .exec(function(err, activities) {
       if (err) {
