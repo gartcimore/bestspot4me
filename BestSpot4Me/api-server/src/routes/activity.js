@@ -11,9 +11,10 @@ var Cookies     = require( "cookies" );
 
 
 var activitySchema = mongoose.Schema({
-  name: String,
-  description: String,
+  name: {type: String, trim:true},
+  description: {type: String, trim:true},
   requirements: [{id: String, mandatory: Boolean}],
+  parameters: [ {level: Number, params: [mongoose.Schema.Types.Mixed]} ],
   type: [String]
 });
 
@@ -45,8 +46,8 @@ router.get('/activity/:id', function(req, res) {
       _id:req.params.id
 
     })
-    .select('name description requirements location')
-    .limit(10)
+    .select({})
+    .limit(100)
     .exec(function(err, activities) {
       if (err) {
         console.log(err);
@@ -62,9 +63,10 @@ router.get('/activity/:id', function(req, res) {
 router.post('/activity/', function(req, res) {
    var body = req.body;
    var activity = new Activity({
-      name: body.name.trim(),
-      description: body.description.trim(),
+      name: body.name,
+      description: body.description,
       requirements: body.requirements,
+      parameters: body.parameters,
       type: body.type
     });
 

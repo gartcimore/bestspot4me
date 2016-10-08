@@ -11,11 +11,14 @@ var Cookies     = require( "cookies" );
 
 
 var spotSchema = mongoose.Schema({
-  name: String,
-  description: String,
-  body:  String,
-  activity: [{id: String, available: Boolean}],
-  location: String,
+  name: {type: String, trim:true},
+  description: {type: String, trim:true},
+  body:  {type: String, trim:true},
+  activity: [
+    {id: String, available: Boolean, params: [mongoose.Schema.Types.Mixed]
+    }
+   ],
+  location: {type: String, trim:true},
   meta: {
     votes: Number,
     favs:  Number
@@ -25,7 +28,7 @@ var spotSchema = mongoose.Schema({
 var commentSchema = mongoose.Schema({
   spot: String,
   user: String,
-  body:  String,
+  body:  {type: String, trim:true},
   rating: Number
 });
 
@@ -76,10 +79,10 @@ router.get('/spot/:id', function(req, res) {
 router.post('/spot/', function(req, res) {
    var body = req.body;
    var spot = new Spot({
-      name: body.name.trim(),
-      description: body.description.trim(),
+      name: body.name,
+      description: body.description,
       activity: body.activity,
-      location: body.location.trim()
+      location: body.location
     });
 
       //res.json("POST SPOT with spot:"+spot);
@@ -122,7 +125,7 @@ router.post('/spot/:id/comment', function(req, res) {
     var comment = new Comment({
       spot: req.params.id,
       user: req.user._id,
-      body: body.body.trim(),
+      body: body.body,
       rating: body.rating
     });
 

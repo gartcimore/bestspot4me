@@ -43,7 +43,13 @@ spot definition :
 --------------------------------------------------
 | body| String              |
 --------------------------------------------------
-| activity| [{id: String, available: Boolean}]   |
+| activity| [
+    {id: String, available: Boolean, 
+      parameter: [
+          {level: Number, [{key: String, value: String}]
+          ]
+      }
+    ]  |
 --------------------------------------------------
 | location| String              |
 --------------------------------------------------
