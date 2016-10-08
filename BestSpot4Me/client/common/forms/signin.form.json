@@ -3,16 +3,21 @@
   "version": 1,
   "action": [
     {
-      "category": "login",
+      "type": "link",
+      "title": "S'enregistrer",
+      "link": "/"
+    },
+    {
+      "type": "submit",
       "name": "addCatalog",
-      "readOnly": false,
       "title": "Se connecter",
       "success": "/admin/catalogAdmin"
     }
+
   ],
   "schema": {
     "type": "object",
-    "title": "Sign In",
+    "title": "Se connecter",
     "required": [
       "userIdEmail",
       "password"
