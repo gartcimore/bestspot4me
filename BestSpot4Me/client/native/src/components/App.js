@@ -25,11 +25,6 @@ export default class App extends Component {
 }
 
 const styles = StyleSheet.create({  
-  welcome: {
-    fontSize: 18,
-    textAlign: 'center',
-    margin: 10,
-  },
   container: {
     flex: 1,
     justifyContent: 'center',
