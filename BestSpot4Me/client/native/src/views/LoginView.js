@@ -1,6 +1,7 @@
 'use strict'
 
 import React, { Component } from 'react';
+
 import AppContainer from '../containers/AppContainer.js';
 import SignInFormContainer from '../containers/SignInFormContainer.js';
 import SignUpFormContainer from '../containers/SignUpFormContainer.js';
@@ -19,7 +20,7 @@ class LoginView extends Component {
     return (
     	<AppContainer>
     	  <Image source={require('image!background')} style={styles.backgroundImage}>
-    	 	 {container}
+    	 	 {container} 
     	  </Image>
     	</AppContainer>
     );
