@@ -1,0 +1,44 @@
+{
+  "formId": "com.bestof4me.sigin",
+  "version": 1,
+  "action": [
+    {
+      "category": "login",
+      "name": "addCatalog",
+      "readOnly": false,
+      "title": "Se connecter",
+      "success": "/admin/catalogAdmin"
+    }
+  ],
+  "schema": {
+    "type": "object",
+    "title": "Sign In",
+    "required": [
+      "userIdEmail",
+      "password"
+    ],
+    "properties": {
+      "username": {
+        "title": "Pseudo",
+        "type": "string"
+      },
+      "password": {
+        "title": "Mot de passe",
+        "type": "string",
+        "secure": true
+      }
+    }
+  },
+  "form": [
+    {
+      "key": "username",
+      "validationMessage": {
+        "302": "This field is like, uh, required?"
+      }
+    },
+    {
+      "key": "password",
+      "type": "password"
+    }
+  ]
+}
