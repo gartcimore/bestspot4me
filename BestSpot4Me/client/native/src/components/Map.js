@@ -55,7 +55,7 @@ class Map extends Component {
           scrollEnabled={true}
           zoomEnabled={true}
           showsUserLocation={false}
-          styleURL={Mapbox.mapStyles.streets}
+          styleURL={"mapbox://styles/crhys/ciu1hdz8z00ja2iqgbigozihf"}
           userTrackingMode={this.props.userTrackingMode}
           annotations={this.props.annotations}
           annotationsAreImmutable
