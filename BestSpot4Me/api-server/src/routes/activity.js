@@ -43,7 +43,6 @@ router.get('/activity/:id', function(req, res) {
   Activity
     .findOne({
       _id:req.params.id
-
     })
     .limit(100)
     .exec(function(err, activities) {
