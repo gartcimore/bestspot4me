@@ -21,7 +21,7 @@ export default class App extends Component {
     return (
       <Provider store={store}>
 	      <Navigator
-	        initialRoute={{ id: 'signin'}}
+	        initialRoute={{ id: 'main'}}
 	        renderScene={this.navigatorRenderScene}
 	      />
       </Provider>

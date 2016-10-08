@@ -60,12 +60,7 @@ export default class FloatingButton extends Component {
         </Animated.View>
         <View pointerEvents="box-none" style={this.getContainerStyles()}>
           {this.state.active && this._renderTappableBackground()}
-
-          {this.props.verticalOrientation === 'up' &&
-            this.props.children && this._renderActions()}
           {this._renderButton()}
-          {this.props.verticalOrientation === 'down' &&
-            this.props.children && this._renderActions()}
         </View>
       </View>
     );

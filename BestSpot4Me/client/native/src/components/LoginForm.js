@@ -44,7 +44,7 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     paddingTop: 100,
     padding: 20,
-    backgroundColor: 'rgba(255,255,255,0.7)',
+    backgroundColor: 'rgba(255,255,255,0.7)'
   },
   title: {
     fontSize: 30,
