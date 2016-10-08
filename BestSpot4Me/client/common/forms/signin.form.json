@@ -1,7 +1,7 @@
 {
   "formId": "com.bestof4me.sigin",
   "version": 1,
-  "action": [
+  "actions": [
     {
       "type": "link",
       "title": "S'enregistrer",
