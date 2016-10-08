@@ -7,7 +7,7 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 # make sure apt is up to date
 RUN apt-get update --fix-missing
 RUN apt-get install -y curl
-RUN apt-get install -y build-essential libssl-dev vim g++
+RUN apt-get install -y build-essential libssl-dev vim g++ git
 
 ENV NVM_DIR /usr/local/nvm
 ENV NODE_VERSION 5.9.0

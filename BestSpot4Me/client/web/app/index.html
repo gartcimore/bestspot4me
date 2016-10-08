@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+   -->
+  <title>BestSpot4Me</title>
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css">
-	<link rel="stylesheet" href="./style/bootstrap.min.css">
-	<link rel="stylesheet" href="./style/style.css">
+  
+  <link rel="stylesheet" href="./style/style.css">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, user-scalable=0, maximum-scale=1, minimum-scale=1"
+  >
+
   </head>
   <body>
     <div id="body"></div>
@@ -12,5 +20,22 @@
   <!-- <script src="webpack-dev-server.js"></script>
   <script src="/vendor.js"></script>
   <script src="/app.js"></script> -->
+
+
+  <script>
+    var WebFontConfig = {
+      google: { families: [ 'Roboto:400,300,500:latin' ] }
+    };
+    (function() {
+      var wf = document.createElement('script');
+      wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+      wf.type = 'text/javascript';
+      wf.async = 'true';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(wf, s);
+    })();
+  </script>
+   <script src="/vendor.min.js"></script>
+  <script src="/app.min.js"></script>
   <script src="/bundle.js"></script>
 </html>
