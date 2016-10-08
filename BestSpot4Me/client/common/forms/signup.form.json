@@ -1,0 +1,62 @@
+{
+  "formId": "com.bestof4me.sigin",
+  "version": 1,
+  "actions": [
+    {
+      "type": "link",
+      "title": "Annuler",
+      "link": "/"
+    },
+    {
+      "type": "submit",
+      "name": "addCatalog",
+      "title": "S'inscrire",
+      "success": "/admin/catalogAdmin"
+    }
+
+  ],
+  "schema": {
+    "type": "object",
+    "title": "S'inscrire",
+    "required": [
+      "userIdEmail",
+      "password"
+    ],
+    "properties": {
+      "name": {
+        "title": "Nom + Prénom",
+        "type": "string"
+      },
+      "username": {
+        "title": "Nom d'utilisateur",
+        "type": "string"
+      },
+      "email": {
+        "title": "Email",
+        "type": "string"
+      },
+      "password": {
+        "title": "Mot de passe",
+        "type": "string",
+        "secure": true
+      },
+      "confirmPassword": {
+        "title": "Retaper votre mot de passe",
+        "type": "string",
+        "secure": true
+      }
+    }
+  },
+  "form": [
+    {
+      "key": "username",
+      "validationMessage": {
+        "302": "This field is like, uh, required?"
+      }
+    },
+    {
+      "key": "password",
+      "type": "password"
+    }
+  ]
+}

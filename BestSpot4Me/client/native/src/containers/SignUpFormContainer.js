@@ -4,44 +4,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //import { meFromToken, meFromTokenSuccess, meFromTokenFailure, resetToken } from 'common/actions/users';
 import LoginForm from '../components/LoginForm.js';  	
-import NativeForm from 'tcomb-form-native';
+
+import jsonForm from 'common/forms/signup.form.json';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-  	'user':NativeForm.struct({
- 			 username: NativeForm.String,
- 		 	 password: NativeForm.String,
- 		 	 confirmedPassword: NativeForm.String
-			}),
-  	'options':{},
-  	'actions':[{
-  				'key' : 1,
-		  		'label':'Sign Up',
-		  		'style' : {
-				    height: 36,
-				    backgroundColor: '#48BBEC',
-				    borderColor: '#48BBEC',
-				    borderWidth: 1,
-				    borderRadius: 8,
-				    marginBottom: 10,
-				    alignSelf: 'stretch',
-				    justifyContent: 'center'
-				  }
-				},
-				{
-  				'key' : 2,
-		  		'label':'Cancel',
-		  		'style' : {
-				    height: 36,
-				    backgroundColor: 'red',
-				    borderColor: 'red',
-				    borderWidth: 1,
-				    borderRadius: 8,
-				    marginBottom: 10,
-				    alignSelf: 'stretch',
-				    justifyContent: 'center'
-				  }
-				}]
+  	'jsonForm':jsonForm,
+  	'options':{}
   }
 }
 
