@@ -36,6 +36,9 @@ up() {
 	project && docker-compose up -d && cd -
 }
 
+down() {
+	project && docker-compose down && cd -
+}
 restart_api() {
 	project && docker-compose restart rest-api && cd -
 }
