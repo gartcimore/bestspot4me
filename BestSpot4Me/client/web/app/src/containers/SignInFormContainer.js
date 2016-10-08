@@ -1,22 +1,25 @@
 import SignInForm from '../components/SignInForm.js';
 import {signInUser, signInUserSuccess, signInUserFailure, resetUserFields } from '_common/actions/users';
 import { reduxForm } from 'redux-form';
+import buildSchema from 'redux-form-schema';
+
+
 
 
 //Client side validation
-function validate(values) {
-  var errors = {};
-  var hasErrors = false;
-  if (!values.username || values.username.trim() === '') {
-    errors.username = 'Entrez votre pseudo';
-    hasErrors = true;
-  }
-  if(!values.password || values.password.trim() === '') {
-    errors.password = 'Entrez votre mot de passe';
-    hasErrors = true;
-  }
-   return hasErrors && errors;
-} 
+// function validate(values) {
+//   var errors = {};
+//   var hasErrors = false;
+//   if (!values.username || values.username.trim() === '') {
+//     errors.username = 'Entrez votre pseudo';
+//     hasErrors = true;
+//   }
+//   if(!values.password || values.password.trim() === '') {
+//     errors.password = 'Entrez votre mot de passe';
+//     hasErrors = true;
+//   }
+//    return hasErrors && errors;
+// } 
 
 
 //For any field errors upon submission (i.e. not instant check)
@@ -66,12 +69,26 @@ function mapStateToProps(state, ownProps) {
 }
 
 
+const schema = {
+  'username': {
+    label: 'Pseudo',
+    required: true,
+    error: 'Merci de saisir votre nom d\'utilisateur' // optional custom error message
+  },
+  'password': {
+    label: 'Mot de passe',
+    required: true,
+    error: 'Merci de saisir votre mot de passe' // optional custom error message
+  }
+}
+
+
+const { fields, validate } = buildSchema(schema)
+
 // connect: first argument is mapStateToProps, 2nd is mapDispatchToProps
 // reduxForm: 1st is form config, 2nd is mapStateToProps, 3rd is mapDispatchToProps
 export default reduxForm({
   form: 'SignInForm', 
-  fields: ['username', 'password'], 
-  null,
-  null,
-  validate 
+  fields: fields, 
+  validate: validate
 }, mapStateToProps, mapDispatchToProps)(SignInForm);

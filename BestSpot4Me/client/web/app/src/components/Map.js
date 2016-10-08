@@ -1,14 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
-import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
-import io from 'socket.io-client';
-
-
-const socket = io('http://localhost:8085'); 
-socket.on('connect', function (msg) {
-  console.log("connected");
-  socket.emit('authenticate', {token: sessionStorage.getItem("jwtToken")}); // send the jwt
-});
+//import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 
 class MapComponent extends Component {
   static contextTypes = {
@@ -31,16 +23,11 @@ class MapComponent extends Component {
     }
   }
 
+
   render() {
     const position = [48.37877257283894, -4.48333];
     return (
-      <Map center={position} zoom={11}>
-        <TileLayer
-          url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        />
-       
-      </Map>
+      <div></div>
     );
   }
 }

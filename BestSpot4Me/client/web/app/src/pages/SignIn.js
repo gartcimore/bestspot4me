@@ -6,7 +6,6 @@ class PostsNew extends Component {
   render() {
     return (
       <div>
-        <HeaderContainer type="posts_new"/>
         <SignInFormContainer />
       </div>
     );

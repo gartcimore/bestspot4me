@@ -15,22 +15,38 @@ var webpack              = require("webpack");
 var webpackDevMiddleware = require('webpack-dev-middleware');
 var webpackHotMiddleware = require('webpack-hot-middleware');
 
-var Wconfig   = require("./webpack.config");
-var compiler  = webpack(Wconfig);
+var Wconfig   = null;
+var compiler  = null;
 
-app.use(webpackDevMiddleware(compiler, {
-  compress: true,
-  hot: true,
-  inline: true,
-  stats: {
-    colors: true,
-    hash: true,
-    timings: true,
-    chunks: false
-  }
-}));
-
-app.use(webpackHotMiddleware(compiler));
+if (process.env.NODE_ENV !== "production") {
+  console.log("dev mode");
+  Wconfig   = require("./webpack.config.dev");
+  compiler  = webpack(Wconfig);
+  app.use(webpackDevMiddleware(compiler, {
+    compress: true,
+    hot: true,
+    inline: true,
+    stats: {
+      colors: true,
+      hash: true,
+      timings: true,
+      chunks: false
+    }
+  }));
+  app.use(webpackHotMiddleware(compiler));
+} else {
+  Wconfig   = require("./webpack.config");
+  compiler  = webpack(Wconfig);
+  console.log("production mode");
+  app.use(webpackDevMiddleware(compiler, {
+    stats: {
+      colors: true,
+      hash: true,
+      timings: true,
+      chunks: false
+    }
+  }));
+}
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -44,16 +60,22 @@ app.use(function(req, res, next) {
 });
 
 var staticPath = __dirname;
+if (process.env.NODE_ENV !== "production") {
+  app.use(logger('dev'));
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(cookieParser());
 
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-
-app.use(express.static(staticPath));
-app.use('/', express.static(staticPath));
-app.use('/new/*', express.static(staticPath));
-app.use('/validateEmail/*', express.static(staticPath));
+  app.use(express.static(staticPath));
+  app.use('/', express.static(staticPath));
+  app.use('/new/*', express.static(staticPath));
+  app.use('/validateEmail/*', express.static(staticPath));
+} else {
+  app.use(express.static(staticPath));
+  app.use('/', express.static(staticPath));
+  app.use('/new/*', express.static(staticPath));
+  app.use('/validateEmail/*', express.static(staticPath));
+}
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

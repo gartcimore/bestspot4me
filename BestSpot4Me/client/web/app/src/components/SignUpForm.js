@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
+import {TextField, RaisedButton}from 'material-ui';
 
 class SignUpForm extends Component {
   static contextTypes = {
@@ -18,64 +19,57 @@ class SignUpForm extends Component {
 
   render() {
     const {asyncValidating, fields: { name, username, email, password, confirmPassword }, handleSubmit, submitting } = this.props;
-
     return (
-      <div className="container">
-      <form onSubmit={handleSubmit(this.props.signUpUser.bind(this))}>
-        <div className={`form-group ${name.touched && name.invalid ? 'has-error' : ''}`}>
-          <label className="control-label">Nom + Prénom*</label>
-          <input type="text" className="form-control" {...name} />
-          <div className="help-block">
-            {name.touched ? name.error : ''}
-          </div>
-        </div>
+      <div className="signup-container">
+        <div className="content">
+          <h2>Inscription sur BestSpot4Me</h2>
+          <form onSubmit={handleSubmit(this.props.signUpUser.bind(this))}>
+            <TextField
+              hintText=""
+              floatingLabelText="Nom + Prénom"
+              errorText={name.touched ? name.error : ''}
+              {...name}
+            />
+            <br />
+            <TextField
+              hintText=""
+              floatingLabelText="Nom d'utilisateur"
+              errorText={username.touched ? username.error : ''}
+              {...username}
+            />
+            <br/>
+            <TextField
+              hintText=""
+              floatingLabelText="Email"
+              errorText={email.touched ? email.error : ''}
+              {...email}
+            />
+            <br/>
 
-        <div className={`form-group ${username.touched && username.invalid ? 'has-error' : ''}`}>
-          <label className="control-label">@pseudo*</label>
-          <input  placeholder="" type="text" className="form-control" {...username} />
-          <div className="help-block">
-            {username.touched ? username.error : ''}
-          </div>
-          <div className="help-block">
-          {asyncValidating === 'username' ? 'validating..': ''}
-          </div>
-        </div>
+            <TextField
+              hintText=""
+              floatingLabelText="Mot de Passe"
+              type="password"
+              errorText={password.touched ? password.error : ''}
+              {...password}
+            />
+            <br />
 
-        <div className={`form-group ${email.touched && email.invalid ? 'has-error' : ''}`}>
-          <label className="control-label">Email*</label>
-          <input type="email" className="form-control" {...email} />
-          <div className="help-block">
-            {email.touched ? email.error : ''}
-          </div>
-          <div className="help-block">
-          {asyncValidating === 'email' ? 'validating..': ''}
-          </div>
-        </div>
+            <TextField
+              hintText=""
+              floatingLabelText="Retaper votre mot de passe"
+              type="password"
+              errorText={confirmPassword.touched ? confirmPassword.error : ''}
+              {...confirmPassword}
+            />
+            <br />
 
-        <div className={`form-group ${password.touched && password.invalid ? 'has-error' : ''}`}>
-          <label className="control-label">Mot de passe*</label>
-          <input type="password" className="form-control" {...password} />
-          <div className="help-block">
-            {password.touched ? password.error : ''}
-          </div>
-        </div>
-        <div className={`form-group ${confirmPassword.touched && confirmPassword.invalid ? 'has-error' : ''}`}>
-          <label className="control-label">Retaper votre mot de passe*</label>
-          <input type="password" className="form-control" {...confirmPassword} />
-          <div className="help-block">
-            {confirmPassword.touched ? confirmPassword.error : ''}
-          </div>
-        </div>
-        <button type="submit" className="btn btn-primary"  disabled={submitting} >Valider</button>
-        <Link to="/" className="btn btn-error">Annuler</Link>
-      </form>
-
-
-      <br/>
-      <br/>
-      <br/>
-
-
+            <div className="button-container">
+              <RaisedButton label="S'inscrire" primary={true}  type="submit"/>
+              <Link to="/"><RaisedButton label="Annuler"  /></Link>
+            </div>
+          </form>
+         </div>
       </div>
 
     );

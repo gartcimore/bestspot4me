@@ -11,29 +11,29 @@ function validate(values) {
   var hasErrors = false;
 
   if (!values.name || values.name.trim() === '') {
-    errors.name = 'Enter a name';
+    errors.name = 'Saisir un nom et prénom';
     hasErrors = true;
   }
   if (!values.username || values.username.trim() === '') {
-    errors.username = 'Enter username';
+    errors.username = 'Saisir un nom d\'utilisateur';
     hasErrors = true;
   }
   if(!values.email || values.email.trim() === '') {
-    errors.email = 'Enter email';
+    errors.email = 'Saisir un email';
     hasErrors = true;
   }
   if(!values.password || values.password.trim() === '') {
-    errors.password = 'Enter password';
+    errors.password = 'Saisir un mot de passe';
     hasErrors = true;
   }
   if(!values.confirmPassword || values.confirmPassword.trim() === '') {
-    errors.confirmPassword = 'Enter Confirm Password';
+    errors.confirmPassword = 'Confirmer votre mot de passe';
     hasErrors = true;
   }
 
   if(values.confirmPassword  && values.confirmPassword.trim() !== '' && values.password  && values.password.trim() !== '' && values.password !== values.confirmPassword) {
-    errors.password = 'Password And Confirm Password don\'t match';
-    errors.password = 'Password And Confirm Password don\'t match';
+    errors.password = 'Les deux mot de passe ne sont pas identiques';
+    errors.password = 'Les deux mot de passe ne sont pas identiques';
     hasErrors = true;
   }
    return hasErrors && errors;

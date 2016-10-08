@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
+import {TextField, RaisedButton}from 'material-ui';
+
 
 class SignInForm extends Component {
   static contextTypes = {
@@ -21,39 +23,33 @@ class SignInForm extends Component {
 
   render() {
     const {asyncValidating, fields: {username, password}, handleSubmit, submitting, user } = this.props;
-
+    console.log(handleSubmit);
     return (
-      <div className="container">
-      <form onSubmit={handleSubmit(this.props.signInUser.bind(this))}>
 
-        <div className={`form-group ${username.touched && username.invalid ? 'has-error' : ''}`}>
-          <label className="control-label">@pseudo*</label>
-          <input  placeholder="@raja" type="text" className="form-control" {...username} />
-          <div className="help-block">
-            {username.touched ? username.error : ''}
-          </div>
-          <div className="help-block">
-          {asyncValidating === 'username' ? 'validating..': ''}
-          </div>
-        </div>
-
-
-        <div className={`form-group ${password.touched && password.invalid ? 'has-error' : ''}`}>
-          <label className="control-label">Mot de passe*</label>
-          <input type="password" className="form-control" {...password} />
-          <div className="help-block">
-            {password.touched ? password.error : ''}
-          </div>
-        </div>
-        <button type="submit" className="btn btn-primary"  disabled={submitting} >Valider</button>
-        <Link to="/" className="btn btn-error">Annuler</Link>
-      </form>
-
-
-      <br/>
-      <br/>
-      <br/>
-
+      <div className="login-container">
+        <div className="content">
+          <h2>Bienvenue sur BestSpot4Me</h2>
+          <form onSubmit={handleSubmit(this.props.signInUser.bind(this))}>
+            <TextField
+              hintText=""
+              floatingLabelText="Nom d'utilisateur"
+              errorText={username.touched ? username.error : ''}
+              {...username}
+            />
+            <br />
+            <TextField
+              hintText=""
+              floatingLabelText="Mot de Passe"
+              errorText={password.touched ? password.error : ''}
+              {...password}
+            />
+            <br />
+            <div className="button-container">
+              <RaisedButton label="Se connecter" primary={true}  type="submit"/>
+              <Link to="/signup" ><RaisedButton label="S'enregistrer"  /></Link>
+            </div>
+          </form>
+         </div>
       </div>
 
     );
