@@ -7,6 +7,7 @@ import thunk from 'redux-thunk';
 
 import * as reducers from 'common/reducers';
 import MainView from './views/MainView';
+import LoginView from './views/LoginView';
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const reducer = combineReducers(reducers);
@@ -16,7 +17,7 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <MainView/>
+        <LoginView/>
       </Provider>
     );
   }
