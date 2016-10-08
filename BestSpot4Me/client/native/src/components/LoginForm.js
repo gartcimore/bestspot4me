@@ -42,9 +42,9 @@ export default class SignInForm extends Component {
 var styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
-    marginTop: 50,
+    paddingTop: 100,
     padding: 20,
-    backgroundColor: '#ffffff',
+    backgroundColor: 'rgba(255,255,255,0.7)',
   },
   title: {
     fontSize: 30,
