@@ -9,24 +9,74 @@ var fs          = require('fs');
 var path        = require('path');
 var Cookies     = require( "cookies" );
 
-if (!process.env.JWT_TOKEN) {
-  console.error('ERROR!: Please set JWT_SECRET before running the app. \n run: export JWT_SECRET=<some secret string> to set JWTSecret. ')
-  process.exit();
-}
 
 var activitySchema = mongoose.Schema({
   name: String,
   description: String,
-  requirements: [{id: String, mandatory: Boolean}]
+  requirements: [{id: String, mandatory: Boolean}],
+  type: [String]
 });
 
-//activitySchema.plugin(timestamps);
 
 var Activity = mongoose.model('Activity', activitySchema);
 
-
 router.get('/activity/', function(req, res) {
-      res.json("activity");
+
+  Activity
+    .find({})
+    .select({})
+    .limit(100)
+    .exec(function(err, activities) {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({
+          error: 'Could not retrieve activities'
+        });
+      }
+      res.json(activities);
+    });
+
+});
+
+router.get('/activity/:id', function(req, res) {
+
+  Activity
+    .findOne({
+      _id:req.params.id
+
+    })
+    .select('name description requirements location')
+    .limit(10)
+    .exec(function(err, activities) {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({
+          error: 'Could not retrieve activity '+req.params.id
+        });
+      }
+      res.json(activities);
+    });
+
+});
+
+router.post('/activity/', function(req, res) {
+   var body = req.body;
+   var activity = new Activity({
+      name: body.name.trim(),
+      description: body.description.trim(),
+      requirements: body.requirements,
+      type: body.type
+    });
+
+      //res.json("POST SPOT with spot:"+spot);
+
+      activity.save(function(err) {
+      if (err) throw err;
+
+      res.json({
+        activity: activity
+      });
+    });
 
 });
 

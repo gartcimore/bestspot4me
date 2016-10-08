@@ -59,10 +59,8 @@ router.get('/spot/:id', function(req, res) {
   Spot
     .findOne({
       _id:req.params.id
-
     })
     .select('name description activity location')
-    .limit(10)
     .exec(function(err, spots) {
       if (err) {
         console.log(err);
@@ -120,8 +118,6 @@ router.post('/spot/:id/comment', function(req, res) {
         message: 'user token does not exists'
       });
     }
-    process.stdout.write("user id "+req.user._id);
-    process.stdout.write("spot id "+req.params.id);
     var body = req.body;
     var comment = new Comment({
       spot: req.params.id,
@@ -144,8 +140,51 @@ router.post('/spot/:id/comment', function(req, res) {
 
 
 router.get('/spot/:id/activity', function(req, res) {
-      res.json("GET activities for spot id "+req.params.id);
+  Spot
+    .find({spot:req.params.id})
+    .select('activity')
+    .limit(100)
+    .exec(function(err, activities) {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({
+          error: 'Could not retrieve activities'
+        });
+      }
+      res.json(activities);
+    });
+});
 
+
+router.post('/spot/:id/activity', function(req, res) {
+  Spot
+  .findOne({_id:req.params.id})
+  .select('activity')
+  .exec(function(err, spot) {
+    if (err) {
+      console.log(err);
+      return res.status(500).json({
+        error: 'Could not retrieve activities from spot'+req.params.id
+      });
+    }
+    process.stdout.write("new activities are "+req.body.activity);
+
+    if(!spot) {
+      process.stdout.write("spot not found");
+      return res.status(404).json({
+        message: 'does not exists: spot '+req.params.id});
+    }
+    process.stdout.write("previous activities were "+spot.activity);
+    spot.activity = req.body.activity
+    spot.save(function(err) {
+      if (err) throw err;
+
+      res.json({
+        spot: spot
+      });
+    });
+
+  });
 });
 
 
