@@ -1,11 +1,5 @@
 'use strict'
 
-/*
-
-Clean Floating Button test
-
-*/
-
 import React, { Component } from 'react';
 import {
   StyleSheet,
