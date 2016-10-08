@@ -35,23 +35,47 @@ GET /spot/{id}/activity
 
 # DB Model
 spot definition :
-	name:  String,
-	description: String,
-	body:   String,
- 	activity: [{id: String, available: Boolean}],
-	location: String,
-  	meta: {
+
+--------------------------------------------------
+| name| String        | 
+--------------------------------------------------
+| description| String|
+--------------------------------------------------
+| body| String              |
+--------------------------------------------------
+| activity| [{id: String, available: Boolean}]   |
+--------------------------------------------------
+| location| String              |
+--------------------------------------------------
+| meta| {
     	votes: Number,
     	favs:  Number
-    	}
+    	}              |
+--------------------------------------------------
 
 activity
-	name: String,
-	description: String,
-	requirements: [{id: String, mandatory: Boolean}]
+--------------------------------------------------
+| name| String        | 
+--------------------------------------------------
+| description| String|
+--------------------------------------------------
+| body| String              |
+--------------------------------------------------
+| requirements| [{id: String, mandatory: Boolean}   |
+--------------------------------------------------
+| type| [String]              |
+--------------------------------------------------
+
 
 Comment
-	spot: Number,
-	user: String,
-	body:  String,
-	rating: Number
+
+--------------------------------------------------
+| Spot| Number        | 
+--------------------------------------------------
+| user| String|
+--------------------------------------------------
+| body| String              |
+--------------------------------------------------
+| rating| Number   |
+--------------------------------------------------
+
