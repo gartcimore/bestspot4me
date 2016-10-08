@@ -19,6 +19,11 @@ var spotSchema = mongoose.Schema({
     }
    ],
   location: {type: String, trim:true},
+  parking: Number,
+  caleExists: Boolean,
+  commune: {type: String, trim:true},
+  clubs: [mongoose.Schema.Types.Mixed],
+  misc: [mongoose.Schema.Types.Mixed],
   meta: {
     votes: Number,
     favs:  Number
