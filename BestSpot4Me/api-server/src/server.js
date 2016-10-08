@@ -10,6 +10,8 @@ var path            = require('path');
 var fs              = require('fs');
 //routes
 var users           = require('./routes/users');
+var spot            = require('./routes/spot');
+var activity        = require('./routes/activity');
 
 
 // Mongo Express
@@ -44,11 +46,11 @@ app.use(function(req, res, next) {
 
   // decode token
   if (token) {
-    jwt.verify(token, process.env.JWT_TOKEN, function(err, user) {      
+    jwt.verify(token, process.env.JWT_TOKEN, function(err, user) {
       if (err) {
-        return res.status(401).json({ success: false, message: 'Failed to authenticate token.' });    
+        return res.status(401).json({ success: false, message: 'Failed to authenticate token.' });
       } else {
-        req.user = user;    
+        req.user = user;
         next();
       }
     });
@@ -58,6 +60,8 @@ app.use(function(req, res, next) {
 });
 
 app.use('/api/', users);
+app.use('/api/', spot);
+app.use('/api/', activity);
 app.use('/mongo_express', mongo_express(mongo_express_config));
 
 // catch 404 and forward to error handler
