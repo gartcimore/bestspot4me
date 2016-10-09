@@ -19,7 +19,7 @@ var config = {
     'webpack/hot/dev-server',
     'webpack-hot-middleware/client'
   ],
-  resolve: {
+  resolve: { 
     extensions: ['', '.js', '.jsx'],
     alias:{
       _common: path.resolve( __dirname, '../common/' ),

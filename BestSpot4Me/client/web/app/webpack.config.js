@@ -3,7 +3,6 @@ var webpack = require('webpack');
 var path = require('path');
 
 var config = {
-  devtool: 'cheap-module-eval-source-map',
   entry: {
     app: [
       path.resolve(__dirname, './src/index.js')

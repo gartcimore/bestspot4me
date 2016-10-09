@@ -2,6 +2,13 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import {TextField, RaisedButton}from 'material-ui';
 
+
+const styles = {
+  image: {
+    height: "80px"
+  }
+};
+
 class SignUpForm extends Component {
   static contextTypes = {
     router: PropTypes.object
@@ -22,6 +29,7 @@ class SignUpForm extends Component {
     return (
       <div className="signup-container">
         <div className="content">
+          <img src={'/img/logo_480.png'} alt="boohoo" style={styles.image}/>
           <h2>Inscription sur BestSpot4Me</h2>
           <form onSubmit={handleSubmit(this.props.signUpUser.bind(this))}>
             <TextField
