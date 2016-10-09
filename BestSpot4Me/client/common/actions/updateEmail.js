@@ -7,7 +7,7 @@ export const UPDATE_EMAIL_SUCCESS = 'UPDATE_EMAIL_SUCCESS';
 export const UPDATE_EMAIL_FAILURE = 'UPDATE_EMAIL_FAILURE';
 export const RESET_UPDATE_EMAIL_STATE = 'RESET_UPDATE_EMAIL_STATE';
 
-const ROOT_URL = 'http://localhost:8082/api';
+const ROOT_URL = '/api';
 
 export function updateEmail(email, tokenFromStorage) {
   const request = axios({
