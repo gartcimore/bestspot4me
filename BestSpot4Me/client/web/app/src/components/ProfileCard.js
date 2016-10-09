@@ -131,7 +131,6 @@ export default class ProfileCard extends Component {
       activities.push(this.createChip(activity))
     })
 
-    console.log(user);
     return (
       <div>
         <center>

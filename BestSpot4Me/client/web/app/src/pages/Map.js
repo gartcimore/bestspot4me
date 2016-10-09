@@ -24,51 +24,12 @@ class Map extends Component {
   handleClose = (criteria) => {
     if (criteria && criteria.length) {
       this.createSpots(criteria)
-    } else {
-      this.setState({open: false});
     }
   }
 
-  /*
-  var spots_annotations = [];
-  var all_annotations = [];
-  Spots.features.forEach(feature => {
-    var properties = feature.properties;
-    var spot = {
-      coordinates : [feature.geometry.coordinates[1],feature.geometry.coordinates[0]], // required. 
-      type: 'point', // required. One of 'point', 'polyline' or 'polygon'
-      title: properties.name, // optional. 
-      id: properties.name+feature.geometry.coordinates[1], // required. 
-      annotationImage: {
-        source: { uri: ((properties.stationnements)?'green_spot_marker':'red_spot_marker')}
-      }     
-    };
-    spots_annotations.push(spot);
-    all_annotations.push(spot);
-    properties.stationnements.features.forEach(parking => {
-      all_annotations.push({
-        coordinates : [parking.geometry.coordinates[1],parking.geometry.coordinates[0]], // required. 
-        type: 'point', // required. One of 'point', 'polyline' or 'polygon'
-        title: parking.properties['lieu-dit'], // optional. 
-        id: parking.properties['lieu-dit']+parking.geometry.coordinates[1], // required. 
-        annotationImage: {
-          source: { uri: 'parking_marker'}
-        }     
-      });  
-     });
-    properties.magasin_plaisance.features.forEach(magasin => {
-      all_annotations.push({
-        coordinates : [magasin.geometry.coordinates[1],magasin.geometry.coordinates[0]], // required. 
-        type: 'point', // required. One of 'point', 'polyline' or 'polygon'
-        title: magasin.properties.name, // optional. 
-        id: magasin.properties.name+magasin.geometry.coordinates[1], // required. 
-        annotationImage: {
-          source: { uri: 'shopping_marker'}
-        }     
-      });  
-     });
-  });
-  */
+  handleCloseSpot = () => {
+    this.setState({open: false});
+  }
 
   createSpots =(criteria) => {
     const _stations = [];
@@ -113,7 +74,7 @@ class Map extends Component {
                <ProfileCardContainer handleSubmit={this.handleClose}/></div>)
                : (<div>
                <AppBar title="Informations sur le spot" iconElementLeft={<div/>} />
-               <LocationCardComponent handleSubmit={this.handleClose} station={this.state.station}/></div>)
+               <LocationCardComponent handleSubmit={this.handleCloseSpot} station={this.state.station}/></div>)
           }
 	    </Drawer>
       </div>

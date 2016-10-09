@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 import FontIcon from 'material-ui/FontIcon';
 import {Tabs, Tab} from 'material-ui/Tabs';
@@ -23,12 +22,16 @@ const styles = {
 };
 
 class LocationCard extends Component {
-  static contextTypes = {
-    router: PropTypes.object
+  
+  state = {
+    open: false,
+    rating: 1,
+    activities: [],
+    value: null
   };
 
 	render() {
-      const {station} = this.props;
+      const {station, handleSubmit} = this.props;
       return (
         <div>
           <center>
@@ -65,7 +68,7 @@ class LocationCard extends Component {
           <RaisedButton 
             label="Ok"  
             primary={true} 
-            onClick={this.props.handleSubmit}
+            onClick={handleSubmit}
           />
           </center>
           </div>
