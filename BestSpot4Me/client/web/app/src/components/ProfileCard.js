@@ -174,7 +174,7 @@ export default class ProfileCard extends Component {
           label="Valider mes préferences"  
           primary={true} 
           style={styles.button}
-          onClick={this.props.handleSubmit}
+          onClick={this.props.handleSubmit(this.state.activities)}
         />       
       </div>
     );
