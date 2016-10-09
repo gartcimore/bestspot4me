@@ -26,7 +26,7 @@ class SignUpForm extends Component {
           <form onSubmit={handleSubmit(this.props.signUpUser.bind(this))}>
             <TextField
               hintText=""
-              floatingLabelText="Nom + Prénom"
+              floatingLabelText="Prénom + Nom"
               errorText={name.touched ? name.error : ''}
               {...name}
             />
