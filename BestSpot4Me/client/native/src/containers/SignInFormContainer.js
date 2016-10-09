@@ -2,16 +2,17 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-//import { meFromToken, meFromTokenSuccess, meFromTokenFailure, resetToken } from 'common/actions/users';
+import {signInUser, signInUserSuccess, signInUserFailure, resetUserFields } from 'common/actions/users';
 import LoginForm from '../components/LoginForm.js';  	
 
 import jsonForm from 'common/forms/signin.form.json';
 
-const mapDispatchToProps = (dispatch) => {
+function mapStateToProps(state) {
   return {
   	'jsonForm':jsonForm,
   	'options':{}
-  }
+  };
 }
 
-export default connect(null, mapDispatchToProps)(LoginForm);
+
+export default connect(mapStateToProps)(LoginForm);

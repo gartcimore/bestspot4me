@@ -54,7 +54,7 @@ class Map extends Component {
           rotateEnabled={true}
           scrollEnabled={true}
           zoomEnabled={true}
-          showsUserLocation={false}
+          showsUserLocation={false}//mapbox://styles/crhys/ciu1d861300i02iolcrdewtrs
           styleURL={"mapbox://styles/crhys/ciu1hdz8z00ja2iqgbigozihf"}
           userTrackingMode={this.props.userTrackingMode}
           annotations={this.props.annotations}

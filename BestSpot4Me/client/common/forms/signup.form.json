@@ -3,17 +3,16 @@
   "version": 1,
   "actions": [
     {
-      "type": "link",
-      "title": "Annuler",
-      "link": "/"
-    },
-    {
       "type": "submit",
       "name": "addCatalog",
       "title": "S'inscrire",
       "success": "/admin/catalogAdmin"
+    },
+    {
+      "type": "link",
+      "title": "Annuler",
+      "link": "/"
     }
-
   ],
   "schema": {
     "type": "object",

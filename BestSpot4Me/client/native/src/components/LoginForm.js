@@ -16,7 +16,7 @@ export default class SignInForm extends Component {
     return (
       <View style={styles.container}>
         <View >
-          <JsonForm form={this.props.jsonForm}/>
+          <JsonForm form={this.props.jsonForm} callback={this.props.callback.bind(this)}/>
         </View>  
       </View>
     );

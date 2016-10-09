@@ -21,8 +21,10 @@ export default class App extends Component {
     return (
       <Provider store={store}>
 	      <Navigator
-	        initialRoute={{ id: 'signup'}}
+	        initialRoute={{ id: 'signin'}}
 	        renderScene={this.navigatorRenderScene}
+          callback={this.goToMap}
+          configureScene={(route, routeStack) => Navigator.SceneConfigs.FadeAndroid}
 	      />
       </Provider>
     );
@@ -32,11 +34,19 @@ export default class App extends Component {
     _navigator = navigator;
     switch (route.id) {
       case 'signin':
-        return (<LoginView step="signin"/>);
+        return (<LoginView navigator={navigator} step="signin"  />);
       case 'signup':
         return (<LoginView step="signup"/>);
       case 'main':
         return (<MainView />);
     }
+  }
+
+  goToMap(){
+    _navigator.push({
+      id: "main"
+    });
+
+    _navigator.pop();
   }
 }

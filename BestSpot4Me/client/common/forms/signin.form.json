@@ -3,17 +3,16 @@
   "version": 1,
   "actions": [
     {
-      "type": "link",
-      "title": "S'enregistrer",
-      "link": "/"
-    },
-    {
       "type": "submit",
       "name": "addCatalog",
       "title": "Se connecter",
       "success": "/admin/catalogAdmin"
+    },
+    {
+      "type": "link",
+      "title": "S'enregistrer",
+      "link": "/"
     }
-
   ],
   "schema": {
     "type": "object",

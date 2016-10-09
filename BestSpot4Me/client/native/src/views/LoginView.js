@@ -3,16 +3,22 @@
 import React, { Component } from 'react';
 
 import AppContainer from '../containers/AppContainer.js';
-import SignInFormContainer from '../containers/SignInFormContainer.js';
+import LoginForm from '../components/LoginForm.js';   
+import jsonForm from 'common/forms/signin.form.json';
 import SignUpFormContainer from '../containers/SignUpFormContainer.js';
 import {Image,StyleSheet} from 'react-native';
 
 class LoginView extends Component {
-  render() {
+  navSecond(){
+    this.props.navigator.push({
+      id: 'main'
+    })
+  }
 
+  render() {
   	var container;
   	if(this.props.step === "signin"){
-  		container = <SignInFormContainer/>;
+  		container = <LoginForm jsonForm={jsonForm} callback={this.navSecond.bind(this)}/>;
   	}
   	else if(this.props.step === "signup"){
   		container = <SignUpFormContainer/>;  		
