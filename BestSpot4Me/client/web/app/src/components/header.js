@@ -1,6 +1,25 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import {AppBar} from 'material-ui';
+import IconButton from 'material-ui/IconButton';
+import IconMenu from 'material-ui/IconMenu';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import MenuItem from 'material-ui/MenuItem';
+import NavigationClose from 'material-ui/svg-icons/navigation/close';
+
+const Logged = (props) => (
+  <IconMenu
+    {...props}
+    iconButtonElement={
+      <IconButton><MoreVertIcon /></IconButton>
+    }
+    targetOrigin={{horizontal: 'left', vertical: 'bottom'}}
+    anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+  >
+    <MenuItem primaryText="Mon profil" key={"profile"}/>
+    <MenuItem primaryText="Se deconnecter" />
+  </IconMenu>
+);
 
 class Header extends Component {
   static contextTypes = {
@@ -17,13 +36,20 @@ class Header extends Component {
     } 
   }
 
+  onItemTouchTap(e, child) {
+    if (child.key == "profile") {
+      this.props.handleProfile();
+    }
+  }
+
 	render() {
-      const { type, authenticatedUser } = this.props
+      const { type, authenticatedUser, handleProfil } = this.props
 			if(authenticatedUser) {
         return (
           <AppBar
             title="BestSpot4Me"
-            iconClassNameRight="muidocs-icon-navigation-expand-more"
+            iconElementLeft={<div/>}
+            iconElementRight={<Logged onItemTouchTap={this.onItemTouchTap.bind(this)}/>}
           />
         );
       }

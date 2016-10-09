@@ -31,7 +31,39 @@ export const UPDATE_USER_EMAIL = 'UPDATE_USER_EMAIL';
 export const LOGOUT_USER = 'LOGOUT_USER';
 
 
-const ROOT_URL = '/api';
+//Prefered Activity
+export const ADD_ACTIVITY = 'ADD_ACTIVITY';
+export const ADD_ACTIVITY_SUCCESS = 'ADD_ACTIVITY_SUCCESS';
+export const ADD_ACTIVITY_FAILURE = 'ADD_ACTIVITY_FAILURE';
+export const UPDATE_USER_ACTIVITY = 'UPDATE_USER_ACTIVITY';
+
+export const DELETE_ACTIVITY = 'DELETE_ACTIVITY';
+
+
+
+
+
+
+const ROOT_URL = 'http://localhost:8082/api';
+
+export function addActivity(activity, user) {
+}
+
+export function addActivitySuccess(user) {
+  return {
+    type: ADD_ACTIVITY_SUCCESS,
+    payload: user
+  };
+}
+
+export function updateUserActivities(activities) {
+  return {
+    type: UPDATE_USER_ACTIVITY,
+    payload:activities
+  };
+}
+
+
 
 export function validateEmail(validateEmailToken) {
   //check if token from welcome email is valid, if so, update email as verified and login the user from response

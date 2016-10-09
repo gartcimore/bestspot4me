@@ -3,7 +3,7 @@ var webpack = require('webpack');
 var path = require('path');
 
 var config = {
-  //devtool: 'cheap-module-eval-source-map',
+  devtool: 'cheap-module-eval-source-map',
   entry: {
     app: [
       path.resolve(__dirname, './src/index.js')
@@ -22,7 +22,9 @@ var config = {
   resolve: {
     extensions: ['', '.js', '.jsx'],
     alias:{
-      _common: path.resolve( __dirname, '../common/' )
+      _common: path.resolve( __dirname, '../common/' ),
+      webworkify: 'webworkify-webpack',
+      'mapbox-gl': path.resolve('./node_modules/mapbox-gl/dist/mapbox-gl.js')
     }
    // root: [ path.join(__dirname, 'app') ]
   },
@@ -57,6 +59,10 @@ var config = {
     // })
   ],
   module: {
+     preLoaders: [{ 
+      test: /\.json$/, 
+      loader: 'json'
+    }],
     loaders: [
           {
               test: /\.js$/,
@@ -65,8 +71,20 @@ var config = {
                 presets: [ "es2015", "react", "stage-1" ]
               },
               exclude: /node_modules/,
+          },
+          {
+            test: /\.js$/,
+            include: path.resolve(__dirname, 'node_modules/webworkify/index.js'),
+            loader: 'worker'
+          },
+          {
+            test: /mapbox-gl.+\.js$/,
+            loader: 'transform/cacheable?brfs'
           }
       ]
+  },
+   node: {
+    fs: 'empty'
   }
 };
 

@@ -14,7 +14,7 @@ class SignInForm extends Component {
 
   componentWillReceiveProps(nextProps) {
     if(nextProps.user.status === 'authenticated' && nextProps.user.user && !nextProps.user.error) {
-      this.context.router.push('/map');
+      this.context.router.push('/profileCreator');
     }
     if(nextProps.user.status === 'signin' && !nextProps.user.user && nextProps.user.error && !this.props.user.error) {
       alert(nextProps.user.error.message);
@@ -23,9 +23,7 @@ class SignInForm extends Component {
 
   render() {
     const {asyncValidating, fields: {username, password}, handleSubmit, submitting, user } = this.props;
-    console.log(handleSubmit);
     return (
-
       <div className="login-container">
         <div className="content">
           <h2>Bienvenue sur BestSpot4Me</h2>
@@ -39,6 +37,7 @@ class SignInForm extends Component {
             <br />
             <TextField
               hintText=""
+              type="password"
               floatingLabelText="Mot de Passe"
               errorText={password.touched ? password.error : ''}
               {...password}
