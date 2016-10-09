@@ -54,12 +54,31 @@ body {
 	padding: 20px;
 }
 
+.profile-creator-container {
+	position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 503px;
+    height: 730px;
+}
+
+.profile-creator-container .content {
+	background: white;
+	padding: 20px;
+}
+
 .leaflet-container {
 	background: white;
-	width: 503px;
-	position: absolute;
-	top: 65px;
-	bottom: 0;
-	right: 0;
+    position: absolute;
 	left: 0;
+    right: 0;
+	top: 0;
+	bottom: 0px;
+}
+
+#map {
+   
 }

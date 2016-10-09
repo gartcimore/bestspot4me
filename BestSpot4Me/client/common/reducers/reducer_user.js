@@ -4,7 +4,11 @@ import {
   ME_FROM_TOKEN, ME_FROM_TOKEN_SUCCESS, ME_FROM_TOKEN_FAILURE, RESET_TOKEN,
 	SIGNUP_USER, SIGNUP_USER_SUCCESS, SIGNUP_USER_FAILURE, RESET_USER,
 	SIGNIN_USER, SIGNIN_USER_SUCCESS,  SIGNIN_USER_FAILURE,
-	LOGOUT_USER, UPDATE_USER_EMAIL
+	LOGOUT_USER, UPDATE_USER_EMAIL,
+
+
+
+    UPDATE_USER_ACTIVITY, ADD_ACTIVITY, ADD_ACTIVITY_SUCCESS, ADD_ACTIVITY_FAILURE
 } from '../actions/users';
 
 
@@ -69,6 +73,15 @@ export default function(state = INITIAL_STATE, action) {
 
     case RESET_USER:// reset authenticated user to initial state
     return { ...state, user: null, status:null, error:null, loading: false};
+
+
+
+    case ADD_ACTIVITY:
+    return {...state, user:{...state.user, activities:action.payload.activities}};
+    case ADD_ACTIVITY_SUCCESS:
+    return {...state, user: action.payload.user};
+    case UPDATE_USER_ACTIVITY:
+    return{...state, user:{...state.user, activities:action.payload.activities}};
     
     default:
     return state;
