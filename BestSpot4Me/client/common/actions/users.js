@@ -44,7 +44,7 @@ export const DELETE_ACTIVITY = 'DELETE_ACTIVITY';
 
 
 
-const ROOT_URL = 'http://localhost:8082/api';
+const ROOT_URL = '/api';
 
 export function addActivity(activity, user) {
 }
