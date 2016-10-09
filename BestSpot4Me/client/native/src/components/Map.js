@@ -16,12 +16,27 @@ const accessToken = 'pk.eyJ1IjoiY3JoeXMiLCJhIjoiY2l0eWVrd2FqMDdzeTJ6cWVpbHVsdDIz
 Mapbox.setAccessToken(accessToken);
 
 class Map extends Component {
-  onRegionDidChange = (location) => {
-    this.setState({ currentZoom: location.zoomLevel });
-  };
+
+  constructor(props){
+    super(props);
+
+    this.state = {
+      annotations: props.spots_annotations
+    };
+  }
 
   onChangeUserTrackingMode = (userTrackingMode) => {
     this.setState({ userTrackingMode });
+  };
+
+  onRegionDidChange = (region) => {
+    this.setState({ currentZoom: region.zoomLevel });
+    if(region.zoomLevel >= 10){
+      this.setState({ annotations: this.props.all_annotations});    
+    }
+    else{
+      this.setState({ annotations: this.props.spots_annotations });        
+    }
   };
 
   componentWillMount() {
@@ -55,10 +70,9 @@ class Map extends Component {
           scrollEnabled={true}
           zoomEnabled={true}
           showsUserLocation={false}//mapbox://styles/crhys/ciu1d861300i02iolcrdewtrs
-          styleURL={"mapbox://styles/crhys/ciu1hdz8z00ja2iqgbigozihf"}
+          styleURL={"mapbox://styles/crhys/ciu21tokx00kt2irq7x593c1v"}
           userTrackingMode={this.props.userTrackingMode}
-          annotations={this.props.annotations}
-          annotationsAreImmutable
+          annotations={this.state.annotations}
           onChangeUserTrackingMode={this.onChangeUserTrackingMode}
           onRegionDidChange={this.onRegionDidChange}
         />
