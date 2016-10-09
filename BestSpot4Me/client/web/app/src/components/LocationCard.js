@@ -32,7 +32,7 @@ class LocationCard extends Component {
       return (
         <div>
           <center>
-            <FontIcon className="material-icons" style={{fontSize: '48px', color: 'green'}}>check_circle</FontIcon>
+            <FontIcon className="material-icons" style={{fontSize: '48px', color: 'green'}}>face</FontIcon>
             <img src={'/img/blc.png'} alt="boohoo" style={styles.image}/>
             <h3>{station.name} (Surf spot)</h3>
           </center>
@@ -41,7 +41,8 @@ class LocationCard extends Component {
           <Tabs>
             <Tab label="Actuellement" >
               <div style={styles.content}>
-                <h2 style={styles.headline}>Actuellement</h2>
+                <h2 style={styles.headline}>Aujoud'hui</h2>
+                <img src={'/img/prevision.png'} alt="boohoo" style={styles.image}/>
                 <p>
                   Les conditions sont idéales pour vous
                 </p>
@@ -51,10 +52,10 @@ class LocationCard extends Component {
               </div>
             </Tab>
             <Tab label="Demain" >
-              <div>
+              <div style={styles.content}>
                 <h2 style={styles.headline}>Demain</h2>
+                <img src={'/img/prevision2.png'} alt="boohoo" style={styles.image}/>
                 <p>
-                  Nous ne vous recommandons pas ce spot
                 </p>
               </div>
             </Tab>

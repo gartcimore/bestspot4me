@@ -17,7 +17,7 @@ const Logged = (props) => (
     anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
   >
     <MenuItem primaryText="Mon profil" key={"profile"}/>
-    <MenuItem primaryText="Se deconnecter" />
+    <MenuItem primaryText="Se deconnecter" key={"logout"}/>
   </IconMenu>
 );
 
@@ -39,6 +39,9 @@ class Header extends Component {
   onItemTouchTap(e, child) {
     if (child.key == "profile") {
       this.props.handleProfile();
+    } else if (child.key == "logout") {
+      this.props.logout();
+      this.context.router.push('/');
     }
   }
 

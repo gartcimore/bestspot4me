@@ -135,9 +135,9 @@ router.post('/users/signin', function(req, res) {
 
         user = utils.getCleanUser(user);
 
-        new Cookies(req,res).set('access_token',token,{
-            httpOnly: true
-        });
+        // new Cookies(req,res).set('access_token',token,{
+        //     httpOnly: true
+        // });
         res.json({
           user: user,
           token: token

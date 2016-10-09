@@ -34,13 +34,14 @@ const styles = {
   }
 }
 
-export default class LondonCycle extends Component {
+export default class Map extends Component {
 
   state = {
     center: [ -4.48705, 48.38927 ],
     zoom: [8],
     skip: 0,
     station: null,
+    parking: null,
     popupShowLabel: true
   };
 
@@ -63,7 +64,7 @@ export default class LondonCycle extends Component {
   _onDrag = () => {
     if (this.state.station) {
       this.setState({
-        station: null
+        station: null, parking: null
       });
     }
   };
@@ -82,13 +83,17 @@ export default class LondonCycle extends Component {
     this.setState({ zoom: [zoom] });
   };
 
-  _popupChange(popupShowLabel) {
-    this.setState({ popupShowLabel });
-  }
+  _parkingClick = (parking, { feature }) => {
+    this.setState({
+      center: feature.geometry.coordinates,
+      zoom: [14],
+      parking
+    });
+  };
 
   render() {
     console.warn(parkings);
-    const { station, skip, end, popupShowLabel } = this.state;
+    const { station, skip, end, popupShowLabel, parking } = this.state;
     const { stations, parkings } = this.props
     let features = [];
     if (stations)
@@ -111,7 +116,7 @@ export default class LondonCycle extends Component {
             key={parking.id}
             onHover={this._onToggleHover.bind(this, "pointer")}
             onEndHover={this._onToggleHover.bind(this, "")}
-            onClick={this._markerClick.bind(this, parking)}
+            onClick={this._parkingClick.bind(this, parking)}
             coordinates={parking.position}/>)
       })
 
@@ -156,6 +161,21 @@ export default class LondonCycle extends Component {
                     display: popupShowLabel ? "block" : "none"
                   }}>
                     {station.name}
+                  </span>
+                </div>
+              </Popup>
+            )
+          }
+
+          {
+            parking && end && (
+              <Popup key={parking.id} coordinates={parking.position} closeButton={true}>
+                <div>
+                  <span style={{
+                    ...styles.popup,
+                    display: popupShowLabel ? "block" : "none"
+                  }}>
+                    Parking : {parking.name}
                   </span>
                 </div>
               </Popup>
