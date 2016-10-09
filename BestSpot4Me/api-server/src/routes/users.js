@@ -25,7 +25,11 @@ var userSchema = mongoose.Schema({
   admin: Boolean,
   isEmailVerified: Boolean,
   verifyEmailToken: String,
-  verifyEmailTokenExpires: Date
+  verifyEmailTokenExpires: Date,
+  activity: [
+    {id: String, level: Number, params: [mongoose.Schema.Types.Mixed]
+    }
+   ]
 });
 
 userSchema.plugin(timestamps);
@@ -287,7 +291,36 @@ router.post(
   });
 
 
+router.post('/activity', function(req, res) {
+  User
+  .findOne({_id:req.params.id})
+  .select('activity')
+  .exec(function(err, user) {
+    if (err) {
+      console.log(err);
+      return res.status(500).json({
+        error: 'Could not retrieve activities for user'+req.params.id
+      });
+    }
+    process.stdout.write("new activities are "+req.body.activity);
 
+    if(!user) {
+      process.stdout.write("user not found");
+      return res.status(404).json({
+        message: 'does not exists: user '+req.params.id});
+    }
+    process.stdout.write("previous activities were "+user.activity);
+    user.activity = req.body.activity
+    user.save(function(err) {
+      if (err) throw err;
+
+      res.json({
+        user: user
+      });
+    });
+
+  });
+});
 
 //get current user from email-token(from w/in welcome email)
 router.get('/validateEmail/:token', function(req, res, next) {
