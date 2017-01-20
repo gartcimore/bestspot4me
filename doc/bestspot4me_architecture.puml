@@ -1,0 +1,49 @@
+@startuml
+
+node "docker frontend" as dockerfrontend {
+
+    [web frontend] as frontend
+}
+
+database "MongoDB" as mongo {
+    [mongo] ..> [dbdata] : use docker volume
+}
+
+node "websocket-server" {
+}
+
+node "docker rest-api" as dockerrest {
+    [rest-api]
+    frame "Docker volume" as restdata {
+    }
+}
+
+node "Monitoring" {
+    node "WeaveScope" as scope {
+    }
+}
+
+node "web-app" {
+}
+
+node "load balancer" {
+    [NGInx] as nginx
+}
+
+
+cloud {
+    [Third Party Data]
+}
+
+cloud {
+    [Http Clients]
+}
+
+[Http Clients] --> [nginx]
+[nginx] --> [frontend]
+[frontend] --> [rest-api]
+[rest-api] ..> [restdata] : use docker volume
+[rest-api] --> [mongo]
+[rest-api] --> [Third Party Data]
+
+@enduml
