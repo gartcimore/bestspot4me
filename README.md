@@ -1,9 +1,9 @@
 # Best Spot 4 Me
- 
+Project for [Ocean Hackathon](https://www.campus-mondial-de-la-mer.fr/Ocean-Hackathon-2739-0-0-0.html) 2016 (#1)
 ## Configure the Dev Environment
 
 * install vagrant and Virtual Box
-	* $ vagrant plugin install ruby_dep --plugin-version 1.3.1	
+	* $ vagrant plugin install ruby_dep --plugin-version 1.3.1
 	* $ vagrant plugin install vagrant-fsnotify
 	* $ vagrant up --provision
 
@@ -70,7 +70,7 @@ Add ANDROID_HOME=Path/To/Android/sdk to environment variables
 
 Add to windows PATH: Path/To/Android/sdk\tools;Path/To/Android/sdk\platform;Path/To/Android/sdk\platform-tools;
 
-Thanks to Android SDK UI (cmd _android_ on windows command line) install Android7/Android6/Intel x86 Emulator Accelerator/build tool 23.0.1/android support repository 
+Thanks to Android SDK UI (cmd _android_ on windows command line) install Android7/Android6/Intel x86 Emulator Accelerator/build tool 23.0.1/android support repository
 
 #### Genymotion
 Genymotion is free for personnal use, you just need to create an account on their site to get an access to download links.
@@ -84,13 +84,10 @@ After installation and after Android SDK configuration, you just have to create 
 Start the virtual device on Genymotion.
 
 Thanks to a windows cmd line, on the native application folder (BestSpot4Me/client/native), do:
-` $ npm install ` after that `mklink /D node_modules\common ..\..\common` to fix react-native issue with npm link (for windows users), and finally `react-native run-android`. 
+` $ npm install ` after that `mklink /D node_modules\common ..\..\common` to fix react-native issue with npm link (for windows users), and finally `react-native run-android`.
 
 App is available on the virtual device after a build (the first build is a bit long).
 
 HMR must be available, when a modification is saved on SublimeText, the application is automatcally updated.
 
 if HMR is not available, press F1 on Genymotion virtual device and "enable hot reloading".
-
-
-
